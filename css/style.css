@@ -490,7 +490,7 @@ footer {
     justify-content: space-between;
     /* Separa Logo (izq) y Menú (der) */
     align-items: center;
-    padding: 20px 50px;
+    padding: 2% 5%;
     /* Espacio alrededor */
     z-index: 1000;
     /* Asegura que esté SIEMPRE encima del video y fotos */
@@ -613,7 +613,7 @@ footer {
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 40px);
+    width: 90%;
     /* Ancho con márgenes a los lados */
     max-width: 1400px;
     z-index: 1000;
