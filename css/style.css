@@ -747,30 +747,42 @@ footer {
 /* --- HTML-ONLY NAVIGATION ANCHORS --- */
 .nav-anchor {
     position: absolute;
-    top: 0;
-    width: 50%;
-    /* Click zone width */
-    height: 100%;
-    z-index: 20;
-    cursor: auto;
-    /* Or pointer, or resize */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35vw;
+    /* Covers >1/3 of screen width */
+    height: 100vh;
+    /* Full height */
+    z-index: 100;
+    cursor: pointer;
     background: transparent;
+    /* background: rgba(0, 255, 0, 0.2); Uncomment to see zones */
 }
 
 .nav-anchor.prev {
-    left: -20px;
-    /* Slight overlap to catch edge clicks */
+    left: -35vw;
+    /* Reach far left */
 }
 
 .nav-anchor.next {
-    right: -20px;
+    right: -35vw;
+    /* Reach far right */
 }
 
-/* Efecto de escala: las fotos se ven un poco más pequeñas si no son la central */
-transform: scale(0.9);
-transition: transform 0.5s ease;
-opacity: 0.5;
-/* Un poco transparentes las de los lados */
+.nav-anchor.prev:hover {
+    cursor: w-resize;
+}
+
+.nav-anchor.next:hover {
+    cursor: e-resize;
+}
+
+/* Efecto de escala */
+.slide {
+    transform: scale(0.9);
+    transition: transform 0.5s ease;
+    opacity: 0.5;
+    /* Un poco transparentes las de los lados */
 }
 
 .slide.active {
