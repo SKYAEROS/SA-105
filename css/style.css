@@ -656,18 +656,23 @@ footer {
     /* Mantiene la proporción */
     display: block;
 }
+
 .main-wrapper {
-    height: 100%;
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    /* Reduced from 140px to lift the whole section up */
     position: relative;
 }
 
 /* --- INDICADOR DRAG --- */
 .drag-indicator {
     position: absolute;
-    top: 100px;
+    top: 75px;
     left: 50%;
     transform: translateX(-50%);
     text-transform: uppercase;
@@ -678,22 +683,32 @@ footer {
     align-items: center;
     gap: 10px;
 }
+
 .drag-indicator .line {
     width: 30px;
     height: 1px;
-    background: #cfa355; /* Dorado */
+    background: #cfa355;
+    /* Dorado */
 }
 
 /* --- SLIDER CONTAINER --- */
 .slider-container {
     width: 100%;
-    height: 60vh; /* Altura del carrusel */
-    overflow: hidden; /* Oculta lo que se sale por los lados */
-    cursor: grab; /* Manita abierta */
+    height: 60vh;
+    /* Altura del carrusel */
+    overflow: hidden;
+    /* Oculta lo que se sale por los lados */
+    cursor: none;
+    /* Hide default cursor */
+    /* Removed scroll-snap to allow free dragging */
+    scroll-snap-type: none;
+    overflow-x: scroll;
+    /* Allow scrolling mechanism */
 }
 
-.slider-container:active {
-    cursor: grabbing; /* Manita cerrada al agarrar */
+/* While dragging */
+.slider-container.active {
+    cursor: none;
 }
 
 /* LA PISTA QUE SE MUEVE */
@@ -702,7 +717,7 @@ footer {
     align-items: center;
     height: 100%;
     /* El ancho se calcula en JS, pero por defecto que fluya */
-    width: max-content; 
+    width: max-content;
     /* Esta transición se maneja en JS para el drag, pero ponemos una base */
     transition: transform 0.3s ease-out;
 }
@@ -711,19 +726,22 @@ footer {
 .slide {
     /* CLAVE: 60vw significa 60% del ancho de la ventana. 
        Esto deja espacio a los lados para ver las otras fotos. */
-    width: 60vw; 
+    width: 60vw;
     height: 100%;
-    padding: 0 20px; /* Separación entre fotos */
+    padding: 0 20px;
+    /* Separación entre fotos */
     position: relative;
-    
+
     /* Efecto de escala: las fotos se ven un poco más pequeñas si no son la central */
     transform: scale(0.9);
     transition: transform 0.5s ease;
-    opacity: 0.5; /* Un poco transparentes las de los lados */
+    opacity: 0.5;
+    /* Un poco transparentes las de los lados */
 }
 
 .slide.active {
-    transform: scale(1); /* La central se ve grande */
+    transform: scale(1);
+    /* La central se ve grande */
     opacity: 1;
 }
 
@@ -733,14 +751,15 @@ footer {
     border-radius: 20px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .slide-inner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    pointer-events: none; /* Evita que arrastres la imagen fantasma */
+    pointer-events: none;
+    /* Evita que arrastres la imagen fantasma */
 }
 
 /* TEXTO ENCIMA DE LA FOTO (Estilo Aanstekelijk) */
@@ -750,12 +769,13 @@ footer {
     left: 0;
     width: 100%;
     padding: 40px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     text-align: center;
 }
 
 .slide-content h2 {
-    font-size: 3rem; /* Texto Gigante */
+    font-size: 3rem;
+    /* Texto Gigante */
     text-transform: uppercase;
     font-weight: 900;
     line-height: 1;
@@ -784,7 +804,8 @@ button {
 }
 
 .counter {
-    font-family: serif; /* Fuente elegante para los números */
+    font-family: serif;
+    /* Fuente elegante para los números */
     font-size: 1.5rem;
     display: flex;
     align-items: center;
@@ -796,6 +817,7 @@ button {
     height: 1px;
     background-color: #555;
 }
+
 .main-wrapper {
     height: 100%;
     display: flex;
@@ -806,10 +828,16 @@ button {
 
 /* INDICADOR SUPERIOR */
 .drag-indicator {
-    position: absolute;
-    top: 15%; /* Ajustado para que no choque */
+    position: relative;
+    display: block;
     width: 100%;
     text-align: center;
+    margin-bottom: 50px;
+    /* Increased space between text and videos */
+    z-index: 20;
+    /* Ensure visibility */
+
+    /* Text styling */
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 0.8rem;
@@ -817,47 +845,69 @@ button {
     animation: pulse 2s infinite;
 }
 
+/* Video Background in Slides */
+.video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    display: block;
+}
+
 @keyframes pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
 }
 
 /* --- EL SLIDER MÁGICO CSS (Scroll Snap) --- */
 .slider-container {
     display: flex;
-    overflow-x: auto; /* Permite scroll horizontal */
-    
+    overflow-x: auto;
+    /* Permite scroll horizontal */
+
     /* LA MAGIA: Esto hace que se detenga justo en el centro */
-    scroll-snap-type: x mandatory; 
-    
+    scroll-snap-type: x mandatory;
+
     /* Configuración de espacio */
-    height: 65vh; 
-    gap: 40px; /* Espacio entre fotos */
-    
+    height: 65vh;
+    gap: 40px;
+    /* Espacio entre fotos */
+
     /* CÁLCULO MATEMÁTICO PARA CENTRAR */
     /* Si la foto mide 60vw, sobran 40vw. Necesitamos 20vw a cada lado */
-    padding: 0 20vw; 
-    
+    padding: 0 20vw;
+
     /* Ocultar barra de scroll */
-    scrollbar-width: none; /* Firefox */
-    scroll-behavior: smooth; /* Para que al clicar los números viaje suave */
+    scrollbar-width: none;
+    /* Firefox */
+    scroll-behavior: smooth;
+    /* Para que al clicar los números viaje suave */
 }
 
 .slider-container::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
+    /* Chrome/Safari */
 }
 
 /* --- LAS FOTOS --- */
 .slide {
     /* Tamaño fijo: 60% del ancho de la pantalla */
-    flex: 0 0 60vw; 
+    flex: 0 0 60vw;
     height: 100%;
     position: relative;
-    
+
     /* Alineación del snap: obligamos a que el centro de la foto toque el centro de la pantalla */
     scroll-snap-align: center;
-    
+
     transition: transform 0.3s ease;
     /* Efecto visual: Las fotos que no estén centradas se ven normales,
        pero usaremos un truco de opacidad simple */
@@ -869,7 +919,7 @@ button {
     border-radius: 20px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .slide-inner img {
@@ -891,7 +941,7 @@ button {
     left: 0;
     width: 100%;
     padding: 40px;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     text-align: center;
 }
 
@@ -923,7 +973,61 @@ button {
     transition: all 0.3s;
 }
 
-.slider-nav a:hover {
-    background-color: #fff;
-    color: #000;
+
+
+/* --- CUSTOM CURSOR --- */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    display: block;
+
+    /* Reset shape to text */
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+    border-radius: 0;
+
+    /* Arrow Style */
+    color: #fff;
+    mix-blend-mode: difference;
+    transition: transform 0.1s;
+}
+
+.custom-cursor::after {
+    content: '➤';
+    /* Big Arrow */
+    font-size: 4rem;
+    /* Big size */
+    display: block;
+    transform: rotate(-45deg);
+    /* Standard pointer angle */
+}
+
+/* Remove old background transitions on active/dragging */
+.custom-cursor.active {
+    background: none;
+    border: none;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.custom-cursor.dragging {
+    background: none;
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* Hide scrollbar completely but allow scroll */
+.slider-container {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.slider-container::-webkit-scrollbar {
+    display: none;
 }
