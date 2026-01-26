@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Benj.RLT</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>  
+
+<body>
     <header class="navbar">
         <div class="logo">
             <a href="index.html" style="display: flex; align-items: center;">
@@ -16,7 +18,7 @@
 
         <nav>
             <ul class="nav-links">
-            
+
 
                 <li><a href="portfolio.html">Portfolio</a></li>
 
@@ -27,18 +29,20 @@
         </nav>
     </header>
     <div class="main-wrapper">
-        
+
         <div class="drag-indicator">
             <span>&larr; Drag to explore &rarr;</span>
         </div>
 
         <div class="slider-container">
-            
+
             <div class="slide" id="slide-1">
                 <div class="slide-inner">
                     <video autoplay muted loop playsinline class="video-bg">
-    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" alt="Proyecto 1">
-</video>
+                        <source
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                            type="video/mp4" alt="Proyecto 1">
+                    </video>
                     <div class="slide-content">
                         <h2>KOMT GOED</h2>
                         <p>Campaña Publicitaria</p>
@@ -48,9 +52,11 @@
 
             <div class="slide" id="slide-2">
                 <div class="slide-inner">
-                   <video autoplay muted loop playsinline class="video-bg">
-    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" alt="Proyecto 2">
-</video>
+                    <video autoplay muted loop playsinline class="video-bg">
+                        <source
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                            type="video/mp4" alt="Proyecto 2">
+                    </video>
                     <div class="slide-content">
                         <h2>FUTURE</h2>
                         <p>Documental Tech</p>
@@ -61,8 +67,10 @@
             <div class="slide" id="slide-3">
                 <div class="slide-inner">
                     <video autoplay muted loop playsinline class="video-bg">
-    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" alt="Proyecto 3">
-</video>
+                        <source
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                            type="video/mp4" alt="Proyecto 3">
+                    </video>
                     <div class="slide-content">
                         <h2>ADRENALINE</h2>
                         <p>Deportes Extremos</p>
@@ -73,26 +81,80 @@
             <div class="slide" id="slide-4">
                 <div class="slide-inner">
                     <video autoplay muted loop playsinline class="video-bg">
-    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" alt="Proyecto 4">
-</video>
-                        <h2>CINEMA</h2>
-                        <p>Short Film</p>
-                    </div>
+                        <source
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                            type="video/mp4" alt="Proyecto 4">
+                    </video>
+                    <h2>CINEMA</h2>
+                    <p>Short Film</p>
                 </div>
             </div>
-
-            
-
         </div>
 
-        <div class="slider-nav">
-            <a href="#slide-1">1</a>
-            <a href="#slide-2">2</a>
-            <a href="#slide-3">3</a>
-            <a href="#slide-4">4</a>
-            <a href="#slide-5">5</a>
-        </div>
+
+
+    </div>
+
+    <div class="custom-cursor"></div>
+
+    <script>
+        const slider = document.querySelector('.slider-container');
+        const slides = document.querySelectorAll('.slide');
+        const cursor = document.querySelector('.custom-cursor');
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+    <div class="custom-cursor"></div>
+    <div class="navigation-overlay">
+        <div class="nav-zone left" onclick="scrollPrev()"></div>
+        <div class="nav-zone right" onclick="scrollNext()"></div>
+    </div>
+
+    <script>
+        const slider = document.querySelector('.slider-container');
+        const cursor = document.querySelector('.custom-cursor');
+
+        // Circle Cursor Logic
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.display = 'block';
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Click Scroll Logic
+        function scrollNext() {
+            // Scroll by width of one slide + gap (approx) or screen percentage
+            // Using scrollBy with explicit pixel value for robustness
+            const slideWidth = slider.querySelector('.slide').offsetWidth;
+            slider.scrollBy({ left: slideWidth + 40, behavior: 'smooth' });
+        }
+
+        function scrollPrev() {
+            const slideWidth = slider.querySelector('.slide').offsetWidth;
+            slider.scrollBy({ left: -(slideWidth + 40), behavior: 'smooth' });
+        }
+        
+        // Ensure overlay has pointer events
+        document.querySelector('.navigation-overlay').style.pointerEvents = 'none'; // Container passes clicks
+        document.querySelectorAll('.nav-zone').forEach(zone => {
+            zone.style.pointerEvents = 'auto'; // Zones capture clicks
+        });
+
+        // Add hover effects on zones to indicate direction
+        const leftZone = document.querySelector('.nav-zone.left');
+        const rightZone = document.querySelector('.nav-zone.right');
+        
+        leftZone.addEventListener('mouseenter', () => cursor.classList.add('hover-left'));
+        leftZone.addEventListener('mouseleave', () => cursor.classList.remove('hover-left'));
+        
+        rightZone.addEventListener('mouseenter', () => cursor.classList.add('hover-right'));
+        rightZone.addEventListener('mouseleave', () => cursor.classList.remove('hover-right'));
+
+    </script>
 
     </div>
 </body>
+
 </html>

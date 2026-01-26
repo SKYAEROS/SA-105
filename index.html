@@ -50,7 +50,6 @@
 
     <section class="project-showcase">
 
-        <div class="custom-cursor">→</div>
         <div class="carousel-container">
             <div class="carousel-track">
 
@@ -134,36 +133,7 @@
     <script>
         const track = document.querySelector('.carousel-track');
         const container = document.querySelector('.project-showcase');
-        const cursor = document.querySelector('.custom-cursor');
         const slides = document.querySelectorAll('.project-slide');
-
-        let isHovering = false;
-
-        // 1. Mouse Move ONLY for Cursor
-        container.addEventListener('mousemove', (e) => {
-            if (!isHovering) return;
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-
-            // Cursor Rotation Logic
-            if (e.clientX < window.innerWidth / 2) {
-                // Left side -> Point Left
-                cursor.style.transform = 'translate(-50%, -50%) rotate(180deg)';
-            } else {
-                // Right side -> Point Right (Default)
-                cursor.style.transform = 'translate(-50%, -50%) rotate(0deg)';
-            }
-        });
-
-        container.addEventListener('mouseenter', () => {
-            isHovering = true;
-            cursor.style.opacity = '1';
-        });
-
-        container.addEventListener('mouseleave', () => {
-            isHovering = false;
-            cursor.style.opacity = '0';
-        });
 
         // 2. Click Logic & Centering Function
         function updateCarousel(activeIndex) {
