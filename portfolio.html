@@ -18,7 +18,7 @@
 
         <nav>
             <ul class="nav-links">
-            
+
 
                 <li><a href="portfolio.html">Portfolio</a></li>
 
@@ -106,46 +106,52 @@
         let startX;
         let scrollLeft;
 
-        // Custom Cursor Logic - track globally
+    <div class="custom-cursor"></div>
+    <div class="navigation-overlay">
+        <div class="nav-zone left" onclick="scrollPrev()"></div>
+        <div class="nav-zone right" onclick="scrollNext()"></div>
+    </div>
+
+    <script>
+        const slider = document.querySelector('.slider-container');
+        const cursor = document.querySelector('.custom-cursor');
+
+        // Circle Cursor Logic
         document.addEventListener('mousemove', (e) => {
-            cursor.style.display = 'block'; // Make sure it's visible on move
+            cursor.style.display = 'block';
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Hover effect for cursor
-        slider.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
+        // Click Scroll Logic
+        function scrollNext() {
+            // Scroll by width of one slide + gap (approx) or screen percentage
+            // Using scrollBy with explicit pixel value for robustness
+            const slideWidth = slider.querySelector('.slide').offsetWidth;
+            slider.scrollBy({ left: slideWidth + 40, behavior: 'smooth' });
+        }
+
+        function scrollPrev() {
+            const slideWidth = slider.querySelector('.slide').offsetWidth;
+            slider.scrollBy({ left: -(slideWidth + 40), behavior: 'smooth' });
+        }
+        
+        // Ensure overlay has pointer events
+        document.querySelector('.navigation-overlay').style.pointerEvents = 'none'; // Container passes clicks
+        document.querySelectorAll('.nav-zone').forEach(zone => {
+            zone.style.pointerEvents = 'auto'; // Zones capture clicks
         });
 
-        slider.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
-            isDown = false;
-            slider.classList.remove('active');
-        });
+        // Add hover effects on zones to indicate direction
+        const leftZone = document.querySelector('.nav-zone.left');
+        const rightZone = document.querySelector('.nav-zone.right');
+        
+        leftZone.addEventListener('mouseenter', () => cursor.classList.add('hover-left'));
+        leftZone.addEventListener('mouseleave', () => cursor.classList.remove('hover-left'));
+        
+        rightZone.addEventListener('mouseenter', () => cursor.classList.add('hover-right'));
+        rightZone.addEventListener('mouseleave', () => cursor.classList.remove('hover-right'));
 
-        // Drag Logic
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.classList.add('active'); // Changes cursor style if needed
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-            cursor.classList.add('dragging'); // Scale cursor up
-        });
-
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-            slider.classList.remove('active');
-            cursor.classList.remove('dragging');
-        });
-
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll-fast speed
-            slider.scrollLeft = scrollLeft - walk;
-        });
     </script>
 
     </div>
