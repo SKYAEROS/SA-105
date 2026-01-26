@@ -538,6 +538,17 @@ footer {
 }
 
 /* Estilo del Logo (CN) */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    height: 80px;
+    width: auto;
+}
+
 .logo a {
     color: #fff;
     text-decoration: none;
