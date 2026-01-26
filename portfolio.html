@@ -31,7 +31,7 @@
     <div class="main-wrapper">
 
         <div class="drag-indicator">
-            <span>&larr; Drag to explore &rarr;</span>
+            <span>&larr; Scroll to explore &rarr;</span>
         </div>
 
         <div class="slider-container">
@@ -60,7 +60,7 @@
 
                     <video autoplay muted loop playsinline class="video-bg">
                         <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
                             type="video/mp4" alt="Proyecto 2">
                     </video>
                     <div class="slide-content">
@@ -77,7 +77,7 @@
 
                     <video autoplay muted loop playsinline class="video-bg">
                         <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
                             type="video/mp4" alt="Proyecto 3">
                     </video>
                     <div class="slide-content">
@@ -93,8 +93,7 @@
                     <a href="#slide-1" class="nav-anchor next"></a>
 
                     <video autoplay muted loop playsinline class="video-bg">
-                        <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
                             type="video/mp4" alt="Proyecto 4">
                     </video>
                     <div class="slide-content"> <!-- Added missing wrapper for consistent styling -->
@@ -111,13 +110,78 @@
 
     <div class="custom-cursor"></div>
 
-    <div class="navigation-overlay">
-        <div class="nav-zone left" onclick="scrollPrev()"></div>
-        <div class="nav-zone right" onclick="scrollNext()"></div>
-    </div>
+    <script>
+        const slider = document.querySelector('.slider-container');
+        const cursor = document.querySelector('.custom-cursor');
 
-    <!-- Navigation Overlay Removed (JS dependency) -->
-    <!-- Custom Cursor Removed (JS dependency) -->
+        // --- Custom Cursor Movement ---
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hide/Show Custom Cursor over Slider
+        slider.addEventListener('mouseenter', () => {
+            slider.style.cursor = 'none'; // Hide native
+            cursor.style.opacity = '1';
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            slider.style.cursor = 'default';
+            cursor.style.opacity = '0';
+            cursor.textContent = '';
+            cursor.classList.remove('active');
+        });
+
+        // --- Click Zones Logic (Left/Right Thirds) ---
+        slider.addEventListener('click', (e) => {
+            const rect = slider.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const width = rect.width;
+
+            const slide = slider.querySelector('.slide');
+            const scrollAmount = slide.offsetWidth + 40;
+
+            if (x < width / 3) {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else if (x > (width * 2) / 3) {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        });
+
+        // --- Dynamic Cursor Feedback ---
+        slider.addEventListener('mousemove', (e) => {
+            const rect = slider.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const width = rect.width;
+
+            if (x < width / 3) {
+                cursor.textContent = '←'; // Left Arrow
+                cursor.classList.add('active');
+            } else if (x > (width * 2) / 3) {
+                cursor.textContent = '→'; // Right Arrow
+                cursor.classList.add('active');
+            } else {
+                cursor.textContent = '';
+                cursor.classList.remove('active');
+            }
+        });
+
+        // --- Mouse Wheel Logic ---
+        let isWheeling = false;
+        slider.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            if (isWheeling) return;
+
+            const direction = e.deltaY > 0 ? 1 : -1;
+            const slide = slider.querySelector('.slide');
+            const scrollAmount = slide.offsetWidth + 40;
+
+            isWheeling = true;
+            slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+            setTimeout(() => isWheeling = false, 500);
+        });
+    </script>
 
 
 </body>
