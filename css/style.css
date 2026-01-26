@@ -11,7 +11,7 @@ html {
 
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #a34841;
+    background-color: #87BAC3;
     /* Palette Dark 1 */
     color: #D6F4ED;
     /* Palette Light Mint */
@@ -170,13 +170,16 @@ body {
 }
 
 .text-box {
-    border: 1px solid #87BAC3;
-    /* Palette Light Blue */
+    /* Liquid Glass / Glassmorphism */
+    background: rgba(255, 255, 255, 0.05);
+    /* Very see-through */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
     border-radius: 20px;
-    /* Esquinas redondeadas */
     padding: 40px;
-    background-color: #53629E;
-    /* Palette Dark 2 */
     text-align: left;
 }
 
@@ -204,7 +207,10 @@ body {
     /* Para que la imagen respete el borde redondeado */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     /* Sombra para dar profundidad */
-    transition: transform 0.3s ease;
+    /* Sombra para dar profundidad */
+    transition: transform 0.3s ease-out, z-index 0s 0.1s;
+    /* Return fast (0.3s), delay z-index reset slightly to match */
+    z-index: 1;
 }
 
 .floating-image img {
@@ -214,10 +220,13 @@ body {
 }
 
 .floating-image:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
     /* Pequeño zoom al pasar el mouse */
     z-index: 15;
     /* Trae la imagen al frente al hacer hover */
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0s 0s;
+    /* Instant z-index change on hover enter */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
 /* --- POSICIONES EXACTAS DE CADA IMAGEN (Ajusta estos % según tu gusto) --- */
@@ -350,161 +359,110 @@ footer {
     font-size: 0.9rem;
 }
 
-/* --- SECCIÓN CARRUSEL --- */
+/* --- FLUID CAROUSEL STYLES --- */
 .project-showcase {
     background-color: #53629E;
-    /* Palette Dark 2 */
     color: #fff;
-    padding: 100px 20px;
+    padding: 100px 0;
+    /* Full width */
     display: flex;
     justify-content: center;
     overflow: hidden;
-    /* Oculta lo que se salga del contenedor */
+    position: relative;
+    cursor: none;
+    /* Hide default cursor here */
 }
 
 .carousel-container {
-    position: relative;
     width: 100%;
-    max-width: 1200px;
-    min-height: 500px;
-    /* Altura mínima para que no salte */
+    /* No max-width restriction to allow full flow */
+    overflow: visible;
 }
 
-/* --- ESTILO DE LA DIAPOSITIVA (SLIDE) --- */
+.carousel-track {
+    display: flex;
+    gap: 100px;
+    padding-left: 20vw;
+    /* Start with some padding */
+    width: max-content;
+    /* Let it grow */
+    will-change: transform;
+    /* Optimizer */
+}
+
+/* --- SLIDE STYLES --- */
 .project-slide {
-    display: none;
-    /* Por defecto ocultas */
+    display: grid !important;
+    /* Force grid layout */
     grid-template-columns: 1fr 1.5fr;
-    /* Columna texto pequeña, imagen grande */
     gap: 50px;
+    /* Internal gap */
+    margin-right: -100px;
+    /* Overlap effect between slides */
     align-items: center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    /* Transición suave al aparecer */
+    width: 65vw;
+    /* Fixed width relative to viewport */
+    flex-shrink: 0;
+    /* Don't shrink */
+
+    /* Default State (No Blur) */
+    opacity: 0.4;
+    transform: scale(0.9);
+    transition: all 1.5s ease-out;
+    position: relative;
+    /* For z-index to work */
 }
 
 .project-slide.active {
-    display: grid;
-    /* Solo la activa se muestra en Grid */
     opacity: 1;
-    animation: fadeIn 0.8s ease forwards;
+    transform: scale(1);
+    z-index: 10;
+    /* Ensure active is on top */
 }
 
-/* --- COLUMNA IZQUIERDA: TEXTO --- */
+/* Disable links on inactive slides so dragging/clicking to nav doesn't trigger link */
+.project-slide:not(.active) a {
+    pointer-events: none;
+}
+
+/* --- CUSTOM CURSOR --- */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 3rem;
+    color: #D6F4ED;
+    /* Light Mint */
+    mix-blend-mode: difference;
+    /* Cool effect */
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Added transform transition */
+}
+
+/* --- REUSE EXISTING CONTENT STYLES --- */
 .project-content {
     padding-right: 20px;
 }
 
 .project-content h3 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
-    font-weight: 700;
-    letter-spacing: 1px;
 }
 
-.project-content p {
-    color: #b0b0b0;
-    /* Gris claro para el texto descriptivo */
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-}
-
-/* El enlace dorado con flecha */
-.gold-link {
-    color: #87BAC3;
-    /* Palette Light Blue */
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-}
-
-.gold-link .arrow {
-    display: inline-block;
-    margin-left: 10px;
-    transition: transform 0.3s ease;
-}
-
-.gold-link:hover {
-    color: #D6F4ED;
-    /* Palette Light Mint */
-}
-
-.gold-link:hover .arrow {
-    transform: translateX(5px);
-    /* La flecha se mueve a la derecha */
-}
-
-/* --- COLUMNA DERECHA: IMAGEN --- */
 .project-image img {
     width: 100%;
-    height: 400px;
+    height: 500px;
     object-fit: cover;
-    border-radius: 12px;
-    /* Bordes redondeados como en tu imagen */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* --- NAVEGACIÓN (NÚMEROS 1 2 3 4 5) --- */
-.carousel-nav {
-    position: absolute;
-    bottom: -50px;
-    /* Los números van debajo */
-    right: 0;
-    /* Alineados a la derecha (o left: 0 para izquierda) */
-    display: flex;
-    gap: 20px;
-}
-
-.nav-btn {
-    background: none;
-    border: none;
-    color: #666;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-    padding-bottom: 5px;
-    font-family: inherit;
-}
-
-.nav-btn:hover {
-    color: #fff;
-}
-
-/* El punto dorado debajo del número activo */
-.nav-btn.active {
-    color: #fff;
-}
-
-.nav-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background-color: #87BAC3;
-    /* Palette Light Blue */
-    border-radius: 50%;
-}
-
-/* --- ANIMACIÓN DE ENTRADA --- */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* --- ANIMACIÓN DE ENTRADA (Removed per new logic) --- */
 
 /* RESPONSIVE (MÓVIL) */
 @media (max-width: 768px) {
@@ -560,6 +518,30 @@ footer {
     font-weight: 900;
     /* Muy grueso */
     letter-spacing: 2px;
+}
+
+/* Navbar Center Text */
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.brand-role {
+    font-size: 0.8rem;
+    font-weight: 300;
+    opacity: 0.8;
 }
 
 /* Estilo de la lista del menú */
