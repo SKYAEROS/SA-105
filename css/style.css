@@ -609,7 +609,7 @@ footer {
 .navbar {
     /* 1. Posición Fija (Para que baje contigo) */
     position: fixed;
-    top: 10px;
+    top: 3%;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
