@@ -1,0 +1,611 @@
+/* Reset básico para quitar márgenes por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #da5a5a;
+    /* Palette Dark 1 */
+    color: #D6F4ED;
+    /* Palette Light Mint */
+    line-height: 1.6;
+}
+
+/* --- ESTILOS DEL VIDEO HERO --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    /* Ocupa toda la altura de la pantalla */
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #000000;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    /* IMPORTANTE: Esto oculta los bordes del video */
+}
+
+/* El truco para que el iframe de YouTube cubra todo (simula object-fit: cover) */
+.video-foreground,
+.video-foreground iframe,
+.video-foreground video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    /* 100 / 1.77 (16:9 aspect ratio) = 56.25 */
+    min-height: 100vh;
+    min-width: 177.77vh;
+    /* 100 * 1.77 = 177.77 */
+    transform: translate(-50%, -50%);
+    /* Centrado perfecto */
+    pointer-events: none;
+    /* CLAVE: Evita que la gente pueda pausar o clicar en el video */
+    z-index: 1;
+}
+
+/* Ajuste de la capa oscura para que siga funcionando encima */
+.overlay {
+    z-index: 2;
+    /* Asegúrate de que esto sea mayor que el z-index del video */
+}
+
+.hero-content {
+    z-index: 3;
+}
+
+.p {
+    font-family: 'generalsans', sans-serif;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+/* --- ESTILOS "MAGAZINE LAYOUT" (Texto centro, fotos lados) --- */
+.magazine-layout {
+    display: grid;
+    /* La magia: 3 columnas. 
+       1fr (espacio libre) - 600px (texto fijo) - 1fr (espacio libre) */
+    grid-template-columns: 1fr 600px 1fr;
+    gap: 40px;
+    /* Espacio entre columnas */
+    max-width: 1400px;
+    margin: 100px auto;
+    /* Centrado en la página */
+    padding: 0 20px;
+}
+
+/* Estilo del texto central */
+.main-text {
+    font-size: 1.2rem;
+    text-align: justify;
+}
+
+.main-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.main-text p {
+    margin-bottom: 20px;
+    color: #bbb;
+    /* Gris claro para lectura cómoda */
+}
+
+/* Estilo de las columnas laterales (imágenes) */
+.side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    /* Espacio vertical entre fotos */
+}
+
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Duplicate body reset removed */
+
+/* --- SECCIÓN COLLAGE --- */
+.collage-section {
+    position: relative;
+    /* CLAVE: Hace que los hijos absolutos se posicionen respecto a esto */
+    width: 100%;
+    max-width: 1200px;
+    /* Ancho máximo para que no se desparrame en pantallas gigantes */
+    height: 800px;
+    /* Altura fija necesaria para este tipo de diseño "flotante" */
+    margin: 100px auto;
+    /* Centrado en la página con margen arriba/abajo */
+    /* background-color: #111; Útil para ver los límites mientras diseñas */
+}
+
+/* --- CAJA DE TEXTO CENTRAL --- */
+.text-box-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Truco perfecto para centrar absolutamente */
+    width: 500px;
+    /* Ancho fijo de la caja de texto */
+    z-index: 10;
+    /* Asegura que el texto quede por encima si algo se solapa */
+}
+
+.text-box {
+    border: 1px solid #87BAC3;
+    /* Palette Light Blue */
+    border-radius: 20px;
+    /* Esquinas redondeadas */
+    padding: 40px;
+    background-color: #53629E;
+    /* Palette Dark 2 */
+    text-align: left;
+}
+
+.text-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.text-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #ccc;
+    /* Texto un poco más gris para contraste */
+}
+
+/* --- IMÁGENES FLOTANTES --- */
+.floating-image {
+    position: absolute;
+    /* Posicionamiento libre */
+    border-radius: 12px;
+    /* Esquinas redondeadas en las fotos */
+    overflow: hidden;
+    /* Para que la imagen respete el borde redondeado */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Sombra para dar profundidad */
+    transition: transform 0.3s ease;
+}
+
+.floating-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.floating-image:hover {
+    transform: scale(1.05);
+    /* Pequeño zoom al pasar el mouse */
+    z-index: 15;
+    /* Trae la imagen al frente al hacer hover */
+}
+
+/* --- POSICIONES EXACTAS DE CADA IMAGEN (Ajusta estos % según tu gusto) --- */
+
+/* Arriba Izquierda */
+.img-1 {
+    top: 5%;
+    left: 15%;
+    width: 220px;
+}
+
+/* Centro Izquierda */
+.img-2 {
+    top: 40%;
+    left: 5%;
+    width: 200px;
+}
+
+/* Abajo Izquierda */
+.img-3 {
+    top: 70%;
+    left: 20%;
+    width: 180px;
+}
+
+/* Arriba Derecha */
+.img-4 {
+    top: 10%;
+    right: 15%;
+    /* Usamos 'right' para posicionar desde la derecha */
+    width: 220px;
+}
+
+/* Centro Derecha */
+.img-5 {
+    top: 45%;
+    right: 5%;
+    width: 200px;
+}
+
+/* --- RESPONSIVE BÁSICO --- */
+/* Este diseño es difícil de adaptar a móvil. Lo mejor es "desarmarlo" */
+@media (max-width: 900px) {
+    .collage-section {
+        height: auto;
+        /* Quitamos la altura fija */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    /* Quitamos el posicionamiento absoluto en móvil */
+    .text-box-container,
+    .floating-image {
+        position: static;
+        transform: none;
+        width: 90%;
+        /* Ancho casi total */
+        max-width: 500px;
+        margin-bottom: 30px;
+    }
+
+    .text-box-container {
+        order: 1;
+        /* Ponemos el texto primero */
+    }
+
+    /* Ocultamos algunas fotos en móvil para no saturar */
+    .img-2,
+    .img-5 {
+        display: none;
+    }
+
+    .img-1,
+    .img-3,
+    .img-4 {
+        order: 2;
+    }
+
+    /* Las fotos debajo */
+}
+
+.image-card img {
+    width: 100%;
+    /* La imagen se adapta al ancho de su columna */
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.image-card img:hover {
+    transform: scale(1.02);
+    /* Efecto zoom suave al pasar el mouse */
+}
+
+.caption {
+    font-size: 0.8rem;
+    color: #666;
+    display: block;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- RESPONSIVE (Para móviles) --- */
+@media (max-width: 900px) {
+    .magazine-layout {
+        /* En móvil, todo en una sola columna */
+        grid-template-columns: 1fr;
+        margin: 50px auto;
+    }
+
+    .side-column {
+        /* Ocultar las fotos laterales en móvil o ponerlas debajo */
+        /* order: 2; si quieres que bajen */
+        display: none;
+        /* Opción: ocultarlas para simplificar lectura en móvil */
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* --- SECCIÓN CARRUSEL --- */
+.project-showcase {
+    background-color: #53629E;
+    /* Palette Dark 2 */
+    color: #fff;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    /* Oculta lo que se salga del contenedor */
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 500px;
+    /* Altura mínima para que no salte */
+}
+
+/* --- ESTILO DE LA DIAPOSITIVA (SLIDE) --- */
+.project-slide {
+    display: none;
+    /* Por defecto ocultas */
+    grid-template-columns: 1fr 1.5fr;
+    /* Columna texto pequeña, imagen grande */
+    gap: 50px;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    /* Transición suave al aparecer */
+}
+
+.project-slide.active {
+    display: grid;
+    /* Solo la activa se muestra en Grid */
+    opacity: 1;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* --- COLUMNA IZQUIERDA: TEXTO --- */
+.project-content {
+    padding-right: 20px;
+}
+
+.project-content h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.project-content p {
+    color: #b0b0b0;
+    /* Gris claro para el texto descriptivo */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* El enlace dorado con flecha */
+.gold-link {
+    color: #87BAC3;
+    /* Palette Light Blue */
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.gold-link .arrow {
+    display: inline-block;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.gold-link:hover {
+    color: #D6F4ED;
+    /* Palette Light Mint */
+}
+
+.gold-link:hover .arrow {
+    transform: translateX(5px);
+    /* La flecha se mueve a la derecha */
+}
+
+/* --- COLUMNA DERECHA: IMAGEN --- */
+.project-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    /* Bordes redondeados como en tu imagen */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* --- NAVEGACIÓN (NÚMEROS 1 2 3 4 5) --- */
+.carousel-nav {
+    position: absolute;
+    bottom: -50px;
+    /* Los números van debajo */
+    right: 0;
+    /* Alineados a la derecha (o left: 0 para izquierda) */
+    display: flex;
+    gap: 20px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 5px;
+    font-family: inherit;
+}
+
+.nav-btn:hover {
+    color: #fff;
+}
+
+/* El punto dorado debajo del número activo */
+.nav-btn.active {
+    color: #fff;
+}
+
+.nav-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #87BAC3;
+    /* Palette Light Blue */
+    border-radius: 50%;
+}
+
+/* --- ANIMACIÓN DE ENTRADA --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE (MÓVIL) */
+@media (max-width: 768px) {
+    .project-slide.active {
+        grid-template-columns: 1fr;
+        /* Una sola columna en móvil */
+        gap: 30px;
+    }
+
+    .carousel-nav {
+        right: 50%;
+        transform: translateX(50%);
+        /* Centrar números en móvil */
+    }
+}
+
+/* --- BARRA DE NAVEGACIÓN --- */
+.navbar {
+    position: fixed;
+    /* CLAVE: Esto la deja pegada arriba */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* Separa Logo (izq) y Menú (der) */
+    align-items: center;
+    padding: 20px 50px;
+    /* Espacio alrededor */
+    z-index: 1000;
+    /* Asegura que esté SIEMPRE encima del video y fotos */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    /* Un degradado sutil para leer mejor */
+    /* Si prefieres fondo negro sólido, usa: background-color: #000; */
+}
+
+/* Estilo del Logo (CN) */
+.logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 900;
+    /* Muy grueso */
+    letter-spacing: 2px;
+}
+
+/* Estilo de la lista del menú */
+.nav-links {
+    list-style: none;
+    /* Quita los puntos de la lista */
+    display: flex;
+    /* Pone los elementos en línea horizontal */
+    gap: 40px;
+    /* Espacio entre cada botón */
+}
+
+/* Estilo de los enlaces (botones) */
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    /* Texto pequeño y elegante como la referencia */
+    font-weight: 600;
+    text-transform: uppercase;
+    /* Todo mayúsculas automático */
+    letter-spacing: 1px;
+    position: relative;
+    /* Necesario para la animación de la línea */
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* EFECTO DE LÍNEA AL PASAR EL MOUSE (Como en la foto "Reel/Projects") */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #fff;
+    /* O puedes usar el dorado #cfa355 */
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    /* La línea crece al 100% al pasar el mouse */
+}
+
+/* RESPONSIVE PARA MÓVIL (Menú simple) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 0.7rem;
+    }
+}
