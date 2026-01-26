@@ -1034,3 +1034,149 @@ button {
 .slider-container::-webkit-scrollbar {
     display: none;
 }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #050505;
+    color: #fff;
+    font-family: 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.header {
+    position: absolute;
+    top: 50px;
+    text-align: center;
+    z-index: 10;
+}
+
+/* --- ESCENARIO 3D --- */
+.scene {
+    width: 400px;  /* Ancho Landscape */
+    height: 250px; /* Alto Landscape */
+    position: relative;
+    /* Perspectiva más alta (1500px) hace que se vea más lejos y menos "ojo de pez" */
+    perspective: 1500px; 
+    margin-top: 50px; /* Un poco de aire */
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    /* VELOCIDAD: 60s para que vaya muy despacio */
+    animation: rotateCircle 60s infinite linear;
+}
+
+/* DETENER AL PASAR EL MOUSE */
+.carousel:hover {
+    animation-play-state: paused;
+}
+
+@keyframes rotateCircle {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(-360deg); }
+}
+
+/* --- LAS TARJETAS (POSICIÓN 3D) --- */
+.carousel__cell {
+    position: absolute;
+    width: 380px; /* Un poco menos que el contenedor */
+    height: 230px;
+    left: 10px;
+    top: 10px;
+    /* Aquí ya NO ponemos transiciones de hover, solo posición */
+}
+
+/* --- EL CONTENIDO DE LA TARJETA (LO QUE VEMOS) --- */
+/* Esta capa extra soluciona el bug. Movemos lo de adentro, no la caja 3D */
+.image-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Animación suave */
+    background: #000;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7; /* Un poco oscuras por defecto */
+    transition: opacity 0.4s ease;
+}
+
+/* --- HOVER EFECTOS --- */
+/* Cuando pasas el mouse por la celda, afectamos al contenedor de imagen */
+.carousel__cell:hover .image-container {
+    transform: scale(1.1); /* Zoom suave al 110% */
+    box-shadow: 0 0 40px rgba(207, 163, 85, 0.6); /* Brillo dorado */
+    border-color: #cfa355;
+    z-index: 100; /* Asegura que se vea encima */
+}
+
+.carousel__cell:hover img {
+    opacity: 1; /* Imagen a todo color */
+}
+
+/* Título dentro de la foto */
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    text-align: center;
+    transform: translateY(100%); /* Oculto por defecto (abajo) */
+    transition: transform 0.3s ease;
+}
+
+.carousel__cell:hover .card-info {
+    transform: translateY(0); /* Aparece al hacer hover */
+}
+
+/* --- MATEMÁTICA DEL CÍRCULO (LANDSCAPE) --- */
+/* Para que las fotos horizontales no se choquen, el radio (translateZ)
+   debe ser mayor. He calculado aprox 650px para 8 fotos de 400px de ancho.
+*/
+
+.carousel__cell:nth-child(1) { transform: rotateY(0deg) translateZ(650px); }
+.carousel__cell:nth-child(2) { transform: rotateY(45deg) translateZ(650px); }
+.carousel__cell:nth-child(3) { transform: rotateY(90deg) translateZ(650px); }
+.carousel__cell:nth-child(4) { transform: rotateY(135deg) translateZ(650px); }
+.carousel__cell:nth-child(5) { transform: rotateY(180deg) translateZ(650px); }
+.carousel__cell:nth-child(6) { transform: rotateY(225deg) translateZ(650px); }
+.carousel__cell:nth-child(7) { transform: rotateY(270deg) translateZ(650px); }
+.carousel__cell:nth-child(8) { transform: rotateY(315deg) translateZ(650px); }
+
+/* Ajuste Móvil */
+@media (max-width: 768px) {
+    .scene {
+        width: 280px;
+        height: 180px;
+        perspective: 1000px;
+    }
+    .carousel__cell {
+        width: 260px;
+        height: 160px;
+    }
+    /* Reducimos el radio en móvil */
+    .carousel__cell:nth-child(1) { transform: rotateY(0deg) translateZ(450px); }
+    .carousel__cell:nth-child(2) { transform: rotateY(45deg) translateZ(450px); }
+    .carousel__cell:nth-child(3) { transform: rotateY(90deg) translateZ(450px); }
+    .carousel__cell:nth-child(4) { transform: rotateY(135deg) translateZ(450px); }
+    .carousel__cell:nth-child(5) { transform: rotateY(180deg) translateZ(450px); }
+    .carousel__cell:nth-child(6) { transform: rotateY(225deg) translateZ(450px); }
+    .carousel__cell:nth-child(7) { transform: rotateY(270deg) translateZ(450px); }
+    .carousel__cell:nth-child(8) { transform: rotateY(315deg) translateZ(450px); }
+}
