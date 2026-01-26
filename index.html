@@ -130,10 +130,13 @@
             <!-- Removed old navigation buttons -->
         </div>
     </section>
+    <div class="custom-cursor"></div>
+
     <script>
         const track = document.querySelector('.carousel-track');
         const container = document.querySelector('.project-showcase');
         const slides = document.querySelectorAll('.project-slide');
+        const cursor = document.querySelector('.custom-cursor');
 
         // 2. Click Logic & Centering Function
         function updateCarousel(activeIndex) {
@@ -161,27 +164,108 @@
                 // Higher Z-Index for closer slides
                 slide.style.zIndex = 10 - distance;
 
+                // Disable pointer events on non-active slides to prevent link clicking?
+                // But we want 'click to center' to work. 
+                // Links inside non-active slides should probably be disabled via CSS (already done in CSS line 423)
+
                 if (index === activeIndex) {
                     slide.classList.add('active');
                 } else {
                     slide.classList.remove('active');
                 }
             });
-        }// Add Click Listeners
+        }
+
+        // Add Click Listeners (Direct slide click)
         slides.forEach((slide, index) => {
-            slide.addEventListener('click', () => {
+            slide.addEventListener('click', (e) => {
+                // If clicking a link, don't center if it navigates away? 
+                // But usually we want to allow navigation.
                 updateCarousel(index);
             });
         });
 
+        // --- Custom Cursor & Zone Logic ---
+
+        // 1. Cursor Movement (Global)
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // 2. Show/Hide on Container
+        container.addEventListener('mouseenter', () => {
+            container.style.cursor = 'none';
+            cursor.style.opacity = '1';
+        });
+
+        container.addEventListener('mouseleave', () => {
+            container.style.cursor = 'default';
+            cursor.style.opacity = '0';
+            cursor.textContent = '';
+            cursor.classList.remove('active');
+        });
+
+        // 3. Zone Detection (Thirds)
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+
+            // Avoid arrow if hovering center (active slide content)
+            if (x < rect.width / 3) {
+                cursor.textContent = '←';
+                cursor.classList.add('active');
+            } else if (x > (rect.width * 2) / 3) {
+                cursor.textContent = '→';
+                cursor.classList.add('active');
+            } else {
+                cursor.textContent = '';
+                cursor.classList.remove('active');
+            }
+        });
+
+        // 4. Zone Click Navigation
+        container.addEventListener('click', (e) => {
+            // Ignore if clicking a link or inside the active slide's content?
+            // If user clicked a link, browser follows it.
+            if (e.target.closest('a')) return;
+
+            // If user clicked a direct slide, the slide listener handles it.
+            // But we want to ensure 'empty space' clicks work too.
+            // We can rely on the slide listener for slides, and this for background?
+            // Or just enforce the thirds logic over everything except links.
+
+            // Check if we clicked a specific slide (e.target is inside a slide)
+            // If so, let's defer to the slide's index unless it's the active one (clicking active does nothing)
+
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
+
+            let newIndex = activeIndex;
+
+            if (x < rect.width / 3) {
+                newIndex = activeIndex - 1;
+            } else if (x > (rect.width * 2) / 3) {
+                newIndex = activeIndex + 1;
+            } else {
+                return; // Center click does nothing (or selects slide if clicked directly)
+            }
+
+            // Boundary checks
+            if (newIndex < 0) newIndex = 0;
+            if (newIndex >= slides.length) newIndex = slides.length - 1;
+
+            if (newIndex !== activeIndex) {
+                updateCarousel(newIndex);
+            }
+        });
+
         // Initialize Carousel
-        // Wait for layout to be ready or just run after small delay
         window.addEventListener('load', () => {
             updateCarousel(0); // Start at first slide
         });
-        // Also update on resize to keep centered
         window.addEventListener('resize', () => {
-            // Find currently active and re-center
             const currentActive = Array.from(slides).findIndex(s => s.classList.contains('active'));
             if (currentActive !== -1) updateCarousel(currentActive);
             else updateCarousel(0);
@@ -228,7 +312,7 @@
     </section>
     <div data-us-project="iFZ9thhkCF6Sfwh5eSdd" style="width:1440px; height: 900px"></div>
 
-       
+
     <footer>
         <p>&copy; 2025 SAE 105????????? - Création Numérique</p>
     </footer>

@@ -425,21 +425,32 @@ footer {
 }
 
 /* --- CUSTOM CURSOR --- */
+/* --- CUSTOM CURSOR --- */
 .custom-cursor {
     position: fixed;
     top: 0;
     left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    font-size: 3rem;
-    color: #D6F4ED;
-    /* Light Mint */
-    mix-blend-mode: difference;
-    /* Cool effect */
     transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    /* Added transform transition */
+    /* Hidden by default until entered */
+    transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s;
+}
+
+.custom-cursor.active {
+    transform: translate(-50%, -50%) scale(1.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* --- REUSE EXISTING CONTENT STYLES --- */
