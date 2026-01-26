@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #a34841;
@@ -620,39 +624,53 @@ footer {
         font-size: 0.7rem;
     }
 }
+
 .navbar {
     /* 1. Posición Fija (Para que baje contigo) */
     position: fixed;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 40px); /* Ancho con márgenes a los lados */
+    width: calc(100% - 40px);
+    /* Ancho con márgenes a los lados */
     max-width: 1400px;
-    z-index: 1000; /* Siempre encima de todo */
+    z-index: 1000;
+    /* Siempre encima de todo */
 
     /* 2. El Efecto "Liquid Glass" Mejorado */
-    background: rgba(0, 0, 0, 0.15); /* Fondo negro al 15% de opacidad */
-    backdrop-filter: blur(20px);     /* Desenfoque más pronunciado */
-    -webkit-backdrop-filter: blur(20px); /* Soporte para Safari/Mac */
-    border: 1.5px solid rgba(255, 255, 255, 0.3); /* Borde blanquecino más visible */
-    box-shadow: 
+    background: rgba(0, 0, 0, 0.15);
+    /* Fondo negro al 15% de opacidad */
+    backdrop-filter: blur(20px);
+    /* Desenfoque más pronunciado */
+    -webkit-backdrop-filter: blur(20px);
+    /* Soporte para Safari/Mac */
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    /* Borde blanquecino más visible */
+    box-shadow:
         0 8px 32px 0 rgba(0, 0, 0, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.1); /* Sombra y efecto interior */
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    /* Sombra y efecto interior */
 
     /* 3. Esquinas Redondeadas */
-    border-radius: 20px; /* Esquinas suavemente redondeadas */
+    border-radius: 20px;
+    /* Esquinas suavemente redondeadas */
 
     /* 4. Diseño interno (Alinear Logo y Botones) */
     display: flex;
-    justify-content: space-between; /* Logo a un lado, botones al otro */
+    justify-content: space-between;
+    /* Logo a un lado, botones al otro */
     align-items: center;
-    padding: 15px 50px; /* Espacio interno (arriba/abajo, lados) */
-    transition: all 0.3s ease; /* Suavidad si cambia algo */
+    padding: 15px 50px;
+    /* Espacio interno (arriba/abajo, lados) */
+    transition: all 0.3s ease;
+    /* Suavidad si cambia algo */
 }
 
 /* Ajuste para tu logo de la montaña/cine */
 .navbar .logo img {
-    height: 40px; /* Ajusta este número para que el logo no sea gigante */
-    width: auto;  /* Mantiene la proporción */
+    height: 40px;
+    /* Ajusta este número para que el logo no sea gigante */
+    width: auto;
+    /* Mantiene la proporción */
     display: block;
 }
