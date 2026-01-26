@@ -38,6 +38,9 @@
 
             <div class="slide" id="slide-1">
                 <div class="slide-inner">
+                    <!-- Navigation Anchor: Next -->
+                    <a href="#slide-2" class="nav-anchor next"></a>
+
                     <video autoplay muted loop playsinline class="video-bg">
                         <source
                             src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
@@ -52,6 +55,9 @@
 
             <div class="slide" id="slide-2">
                 <div class="slide-inner">
+                    <a href="#slide-1" class="nav-anchor prev"></a>
+                    <a href="#slide-3" class="nav-anchor next"></a>
+
                     <video autoplay muted loop playsinline class="video-bg">
                         <source
                             src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
@@ -66,6 +72,9 @@
 
             <div class="slide" id="slide-3">
                 <div class="slide-inner">
+                    <a href="#slide-2" class="nav-anchor prev"></a>
+                    <a href="#slide-4" class="nav-anchor next"></a>
+
                     <video autoplay muted loop playsinline class="video-bg">
                         <source
                             src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
@@ -80,13 +89,18 @@
 
             <div class="slide" id="slide-4">
                 <div class="slide-inner">
+                    <a href="#slide-3" class="nav-anchor prev"></a>
+                    <a href="#slide-1" class="nav-anchor next"></a>
+
                     <video autoplay muted loop playsinline class="video-bg">
                         <source
                             src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
                             type="video/mp4" alt="Proyecto 4">
                     </video>
-                    <h2>CINEMA</h2>
-                    <p>Short Film</p>
+                    <div class="slide-content"> <!-- Added missing wrapper for consistent styling -->
+                        <h2>CINEMA</h2>
+                        <p>Short Film</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,64 +111,15 @@
 
     <div class="custom-cursor"></div>
 
-    <script>
-        const slider = document.querySelector('.slider-container');
-        const slides = document.querySelectorAll('.slide');
-        const cursor = document.querySelector('.custom-cursor');
-
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-    <div class="custom-cursor"></div>
     <div class="navigation-overlay">
         <div class="nav-zone left" onclick="scrollPrev()"></div>
         <div class="nav-zone right" onclick="scrollNext()"></div>
     </div>
 
-    <script>
-        const slider = document.querySelector('.slider-container');
-        const cursor = document.querySelector('.custom-cursor');
+    <!-- Navigation Overlay Removed (JS dependency) -->
+    <!-- Custom Cursor Removed (JS dependency) -->
 
-        // Circle Cursor Logic
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.display = 'block';
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
 
-        // Click Scroll Logic
-        function scrollNext() {
-            // Scroll by width of one slide + gap (approx) or screen percentage
-            // Using scrollBy with explicit pixel value for robustness
-            const slideWidth = slider.querySelector('.slide').offsetWidth;
-            slider.scrollBy({ left: slideWidth + 40, behavior: 'smooth' });
-        }
-
-        function scrollPrev() {
-            const slideWidth = slider.querySelector('.slide').offsetWidth;
-            slider.scrollBy({ left: -(slideWidth + 40), behavior: 'smooth' });
-        }
-        
-        // Ensure overlay has pointer events
-        document.querySelector('.navigation-overlay').style.pointerEvents = 'none'; // Container passes clicks
-        document.querySelectorAll('.nav-zone').forEach(zone => {
-            zone.style.pointerEvents = 'auto'; // Zones capture clicks
-        });
-
-        // Add hover effects on zones to indicate direction
-        const leftZone = document.querySelector('.nav-zone.left');
-        const rightZone = document.querySelector('.nav-zone.right');
-        
-        leftZone.addEventListener('mouseenter', () => cursor.classList.add('hover-left'));
-        leftZone.addEventListener('mouseleave', () => cursor.classList.remove('hover-left'));
-        
-        rightZone.addEventListener('mouseenter', () => cursor.classList.add('hover-right'));
-        rightZone.addEventListener('mouseleave', () => cursor.classList.remove('hover-right'));
-
-    </script>
-
-    </div>
 </body>
 
 </html>
