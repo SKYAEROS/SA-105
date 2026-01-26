@@ -1047,7 +1047,7 @@ button {
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
+.preuve-body {
     background-color: #050505;
     color: #fff;
     font-family: 'Helvetica Neue', sans-serif;
@@ -1059,7 +1059,7 @@ body {
     overflow: hidden;
 }
 
-.header {
+.carrouselheader {
     position: absolute;
     top: 50px;
     text-align: center;
