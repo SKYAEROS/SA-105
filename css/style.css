@@ -738,11 +738,39 @@ footer {
     -moz-user-select: none;
     /* Firefox */
 
-    /* Efecto de escala: las fotos se ven un poco más pequeñas si no son la central */
-    transform: scale(0.9);
-    transition: transform 0.5s ease;
-    opacity: 0.5;
-    /* Un poco transparentes las de los lados */
+    /* CSS Snap Alignment */
+    scroll-snap-align: center;
+    display: inline-block;
+    /* Ensure they sit side-by-side if not using flex */
+}
+
+/* --- HTML-ONLY NAVIGATION ANCHORS --- */
+.nav-anchor {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    /* Click zone width */
+    height: 100%;
+    z-index: 20;
+    cursor: auto;
+    /* Or pointer, or resize */
+    background: transparent;
+}
+
+.nav-anchor.prev {
+    left: -20px;
+    /* Slight overlap to catch edge clicks */
+}
+
+.nav-anchor.next {
+    right: -20px;
+}
+
+/* Efecto de escala: las fotos se ven un poco más pequeñas si no son la central */
+transform: scale(0.9);
+transition: transform 0.5s ease;
+opacity: 0.5;
+/* Un poco transparentes las de los lados */
 }
 
 .slide.active {
@@ -981,72 +1009,7 @@ button {
 
 
 
-/* --- CUSTOM CURSOR (Portfolio only) --- */
-body .custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 10000;
-    display: block;
 
-    /* Circle Style */
-    width: 20px;
-    height: 20px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    background: transparent;
-
-    /* Mix blend mode for visibility */
-    mix-blend-mode: difference;
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
-}
-
-/* Remove arrow content */
-body .custom-cursor::after {
-    content: '';
-    display: none;
-}
-
-/* Hover effects */
-body .custom-cursor.active,
-body .custom-cursor.hover-left,
-body .custom-cursor.hover-right {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* --- CLICK ZONES --- */
-.navigation-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    pointer-events: none;
-    z-index: 50;
-}
-
-.nav-zone {
-    width: 50%;
-    height: 100%;
-    cursor: none;
-    /* Hide default cursor to use custom one */
-    pointer-events: auto;
-}
-
-/* Restore default cursor for index page carousel */
-.project-showcase {
-    cursor: default;
-}
-
-/* Hide default cursor only on portfolio slider logic handled by overlay now */
-.slider-container {
-    cursor: default;
-}
 
 /* Hide scrollbar completely but allow scroll */
 .slider-container {
