@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier | Benj.RLT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cart-wrapper {
+            padding-top: 150px;
+            min-height: 80vh;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        .cart-title {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .cart-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            border-color: #cfa355;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .item-info h3 {
+            font-size: 1.5rem;
+            color: #cfa355;
+            text-transform: capitalize;
+            margin-bottom: 5px;
+        }
+
+        .item-details {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .remove-btn {
+            background: transparent;
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .remove-btn:hover {
+            background: #ff4444;
+            color: #fff;
+        }
+
+        .empty-msg {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 50px;
+        }
+
+        .cart-actions {
+            margin-top: 30px;
+            text-align: right;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .checkout-btn {
+            padding: 15px 40px;
+            background: #cfa355;
+            color: #000;
+            border: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html" style="display: flex; align-items: center;">
+                <img src="img/logo.png" alt="Logo">
+            </a>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <li><a href="panier.html">Panier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="cart-wrapper">
+        <h1 class="cart-title">Votre Sélection</h1>
+
+        <div id="cart-container">
+            <!-- Items injected via JS -->
+        </div>
+
+        <div class="cart-actions" id="cart-actions" style="display:none;">
+            <a href="contact.php?from=cart" class="checkout-btn">Demander un Devis</a>
+        </div>
+    </div>
+
+    <script>
+        function renderCart() {
+            const container = document.getElementById('cart-container');
+            const actions = document.getElementById('cart-actions');
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-msg">Votre panier est vide.</div>';
+                actions.style.display = 'none';
+                return;
+            }
+
+            actions.style.display = 'block';
+
+            cart.forEach((item, index) => {
+                let details = '';
+                // Format details based on keys (skip serviceType)
+                for (const [key, value] of Object.entries(item)) {
+                    if (key !== 'serviceType' && key !== 'notes') {
+                        details += `<span style="margin-right:15px; text-transform:capitalize;"><strong>${key}:</strong> ${value}</span>`;
+                    }
+                }
+                if (item.notes) details += `<br><em style="font-size:0.8rem; color:#888;">Note: ${item.notes}</em>`;
+
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div class="item-info">
+                        <h3>${getServiceTitle(item.serviceType)}</h3>
+                        <div class="item-details">${details}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeItem(${index})">Retirer</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function getServiceTitle(type) {
+            const map = {
+                'tournage': 'Tournage & Cadrage',
+                'montage': 'Montage Vidéo',
+                'full': 'Projet A à Z'
+            };
+            return map[type] || type;
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        // Init
+        renderCart();
+    </script>
+
+</body>
+
+</html>

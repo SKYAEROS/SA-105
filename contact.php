@@ -45,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="services.html">Services</a></li>
 
                 <li><a href="contact.php">Contact</a></li>
+                <li><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
     </header>
@@ -58,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="subtitle">Un projet ? Une question ? Envoyez un message ou retrouvez-moi sur les réseaux.</p>
 
                 <div class="social-highlight">
-                    <a href="https://instagram.com" target="_blank" class="social-card instagram">
+                    <a href="https://www.instagram.com/benj.rlt/" target="_blank" class="social-card instagram">
                         <div class="icon">IG</div> <!-- Placeholder for Icon -->
                         <span>Instagram</span>
                     </a>
@@ -66,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="icon">FB</div>
                         <span>Facebook</span>
                     </a>
-                    <a href="https://youtube.com" target="_blank" class="social-card youtube">
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-card youtube">
                         <div class="icon">YT</div>
                         <span>Youtube</span>
                     </a>
@@ -78,9 +79,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form action="" method="POST">
 
                     <?php if ($message_sent): ?>
-                    <div class="success-message">
-                        Message envoyé avec succès !
-                    </div>
+                        <div class="success-message">
+                            Message envoyé avec succès !
+                        </div>
                     <?php endif; ?>
 
                     <div class="input-group">

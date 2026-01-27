@@ -1439,11 +1439,214 @@ button {
     background: #cfa355;
 }
 
+/* --- SERVICES PAGE --- */
+.services-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Force 3 columns */
+    gap: 30px;
+    padding: 0 5%;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.3s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    /* Tall vertical rectangle */
+    min-height: 500px;
+    position: relative;
+}
+
+.service-card:hover {
+    transform: scale(1.03) translateY(-10px);
+    /* Zoom + Lift */
+    border-color: #cfa355;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+
+.card-image {
+    height: 60%;
+    /* Occupy most of the card */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover .card-image {
+    transform: scale(1.05);
+    /* Internal image zoom */
+}
+
+/* --- UPDATED SERVICE IMAGES --- */
+.tournage-img {
+    background-image: linear-gradient(to bottom, transparent, #050505), url('../img/Montana2.jpg');
+    background-color: #222;
+}
+
+.montage-img {
+    background-image: linear-gradient(to bottom, transparent, #050505), url('../img/Session2.jpg');
+    background-color: #222;
+}
+
+.full-img {
+    background-image: linear-gradient(to bottom, transparent, #050505), url('../img/Bar.jpg');
+    /* New image for Full Project */
+    background-color: #222;
+}
+
+
+/* --- MODAL STYLES --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    /* High z-index */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    overflow-y: auto;
+    /* Handle small screens */
+}
+
+.modal-content {
+    background-color: #111;
+    margin: 5% auto;
+    padding: 40px;
+    border: 1px solid #444;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(207, 163, 85, 0.2);
+    animation: modalSlide 0.4s ease;
+}
+
+@keyframes modalSlide {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+#bookingForm .input-group {
+    margin-bottom: 25px;
+}
+
+/* Ensure Nav doesn't break */
+.nav-links {
+    white-space: nowrap;
+}
+
+.card-content {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.service-desc {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.service-features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.service-features li {
+    color: #888;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.service-features li::before {
+    content: "•";
+    color: #cfa355;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid #cfa355;
+    color: #cfa355;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+
+.add-btn:hover {
+    background: #cfa355;
+    color: #000;
+}
+
 /* Mobile */
 @media (max-width: 900px) {
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 50px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .service-card {
+        height: auto;
+        min-height: 400px;
     }
 
     .contact-info .page-title {

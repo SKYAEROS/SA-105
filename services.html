@@ -24,12 +24,185 @@
                 <li><a href="services.html">Services</a></li>
 
                 <li><a href="contact.php">Contact</a></li>
+                <li><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
     </header>
-    <div class="portfolio">
-        <h1>Services</h1>
+    <div class="main-wrapper contact-wrapper" style="align-items: flex-start; padding-top: 150px;">
+
+        <div class="services-container">
+            <h1 class="page-title" style="text-align: center; margin-bottom: 60px;">Nos Prestations</h1>
+
+            <div class="services-grid">
+
+                <!-- 1. Tournage -->
+                <div class="service-card" data-service="tournage">
+                    <div class="card-image tournage-img"></div>
+                    <div class="card-content">
+                        <h2>Tournage</h2>
+                        <p class="service-desc">Captation 4K, Éclairage, Prise de son. L'expertise technique sur le
+                            terrain.</p>
+                        <button class="add-btn" onclick="openModal('tournage')">Configurer le devis</button>
+                    </div>
+                </div>
+
+                <!-- 2. Montage -->
+                <div class="service-card" data-service="montage">
+                    <div class="card-image montage-img"></div>
+                    <div class="card-content">
+                        <h2>Montage</h2>
+                        <p class="service-desc">Derushage, Colorimétrie, Sound Design. Sublimez vos images.</p>
+                        <button class="add-btn" onclick="openModal('montage')">Configurer le devis</button>
+                    </div>
+                </div>
+
+                <!-- 3. Projet A à Z -->
+                <div class="service-card" data-service="full">
+                    <div class="card-image full-img"></div>
+                    <div class="card-content">
+                        <h2>Projet A à Z</h2>
+                        <p class="service-desc">De la conception à la diffusion. Scénario, Tournage, Post-production.
+                        </p>
+                        <button class="add-btn" onclick="openModal('full')">Configurer le devis</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Configurer votre prestation</h2>
+
+            <form id="bookingForm" onsubmit="addToCart(event)">
+                <input type="hidden" id="serviceType" name="serviceType">
+
+                <!-- Dynamic Fields Container -->
+                <div id="dynamicFields">
+                    <!-- Fields injected by JS -->
+                </div>
+
+                <!-- Common Field -->
+                <div class="input-group">
+                    <textarea name="notes" placeholder="Détails supplémentaires (Optionnel)" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="send-btn" style="width: 100%; justify-content: center;">Ajouter au
+                    Panier</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("bookingModal");
+        const dynamicFields = document.getElementById("dynamicFields");
+        const modalTitle = document.getElementById("modalTitle");
+        const serviceTypeInput = document.getElementById("serviceType");
+
+        const serviceConfig = {
+            tournage: {
+                title: "Réservation Tournage",
+                fields: `
+                    <div class="input-group">
+                        <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Type de Caméra</label>
+                        <select name="camera" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="fx3">Sony FX3 (Cinéma)</option>
+                            <option value="hybrid">Hybride (Standard)</option>
+                            <option value="drone">Drone FPV</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Durée estimée</label>
+                        <select name="duration" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="half_day">Demi-journée (4h)</option>
+                            <option value="full_day">Journée complète (8h)</option>
+                            <option value="multi">Plusieurs jours</option>
+                        </select>
+                    </div>
+                `
+            },
+            montage: {
+                title: "Devis Montage",
+                fields: `
+                   <div class="input-group">
+                        <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Volume de Rushs</label>
+                        <select name="rush_volume" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="low">< 10 Go</option>
+                            <option value="med">10 Go - 50 Go</option>
+                            <option value="high">> 50 Go</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Style</label>
+                        <select name="style" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="dynamic">Dynamique / Réseaux Sociaux</option>
+                            <option value="cinematic">Cinématique / Docu</option>
+                            <option value="corp">Corporate / Interview</option>
+                        </select>
+                    </div>
+                `
+            },
+            full: {
+                title: "Projet A à Z",
+                fields: `
+                    <div class="input-group">
+                        <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Type de Projet</label>
+                        <input type="text" name="project_type" placeholder="Ex: Publicité, Clip, Court-métrage" style="width:100%; padding:10px; background:transparent; border-bottom:1px solid #fff; color:#fff;">
+                    </div>
+                    <div class="input-group">
+                        <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Budget Estimé</label>
+                        <select name="budget" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="small">< 500€</option>
+                            <option value="med">500€ - 2000€</option>
+                            <option value="large">> 2000€</option>
+                        </select>
+                    </div>
+                `
+            }
+        };
+
+        function openModal(type) {
+            const config = serviceConfig[type];
+            modalTitle.textContent = config.title;
+            dynamicFields.innerHTML = config.fields;
+            serviceTypeInput.value = type;
+            modal.style.display = "block";
+            // Prevent body scroll
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        function addToCart(e) {
+            e.preventDefault();
+            // Get form data
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // Get existing cart or init
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push(data);
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert("Service ajouté au panier !");
+            closeModal();
+            // Redirect to basket or stay? User said "add to panier"
+            // location.href = 'panier.html'; 
+        }
+
+        // Close if click outside
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 
 </html>
