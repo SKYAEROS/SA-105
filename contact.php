@@ -1,3 +1,13 @@
+<?php
+$message_sent = false;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Here we would handle the email sending logic
+    // $to = "your-email@example.com";
+    // $subject = "Nouveau contact de " . $_POST['prenom'] . " " . $_POST['nom'];
+    // mail(...);
+    $message_sent = true;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,6 +16,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Benj.RLT</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .success-message {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid #2ecc71;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,8 +75,14 @@
 
             <!-- Side: Form -->
             <div class="form-container">
-                <form action="#" method="POST">
-                    
+                <form action="" method="POST">
+
+                    <?php if ($message_sent): ?>
+                    <div class="success-message">
+                        Message envoyé avec succès !
+                    </div>
+                    <?php endif; ?>
+
                     <div class="input-group">
                         <input type="text" name="prenom" required placeholder=" ">
                         <label>Prénom</label>
