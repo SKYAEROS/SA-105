@@ -25,6 +25,11 @@
                 <li><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
+         <div class="burger-menu" id="burgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     </header>
 
     <div class="cart-wrapper">
@@ -104,6 +109,28 @@
             <a href="mentions.html" class="legal-link">Mentions Légales</a>
         </div>
     </footer>
+    <script>
+    // 1. Capturamos los elementos por su ID
+    const burger = document.getElementById('burgerMenu');
+    const nav = document.getElementById('navLinks');
+
+    // 2. Escuchamos el "click"
+    burger.addEventListener('click', () => {
+        // Añadimos o quitamos la clase 'active' al menú (para que entre/salga)
+        nav.classList.toggle('active');
+        
+        // Añadimos o quitamos la clase 'toggle' al botón (para que se haga X)
+        burger.classList.toggle('toggle');
+    });
+
+    // 3. (Opcional) Cerrar el menú si tocamos un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+            burger.classList.remove('toggle');
+        });
+    });
+</script>
 </body>
 
 </html>
