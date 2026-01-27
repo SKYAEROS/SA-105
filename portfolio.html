@@ -193,26 +193,28 @@
         </div>
     </footer>
 <script>
-    // 1. Capturamos los elementos por su ID
+    // Esperamos a que el contenido cargue para evitar errores
+document.addEventListener('DOMContentLoaded', () => {
+    
     const burger = document.getElementById('burgerMenu');
     const nav = document.getElementById('navLinks');
 
-    // 2. Escuchamos el "click"
-    burger.addEventListener('click', () => {
-        // Añadimos o quitamos la clase 'active' al menú (para que entre/salga)
-        nav.classList.toggle('active');
-        
-        // Añadimos o quitamos la clase 'toggle' al botón (para que se haga X)
-        burger.classList.toggle('toggle');
-    });
-
-    // 3. (Opcional) Cerrar el menú si tocamos un enlace
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            burger.classList.remove('toggle');
+    // Verificamos si los elementos existen antes de añadir el evento (para evitar errores)
+    if (burger && nav) {
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            burger.classList.toggle('toggle');
         });
-    });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                burger.classList.remove('toggle');
+            });
+        });
+    }
+});
 </script>
 </body>
 
