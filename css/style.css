@@ -1757,3 +1757,52 @@ button {
         font-size: 2.5rem;
     }
 }
+.main-footer {
+    background-color: #000; /* Fondo negro */
+    border-top: 1px solid #222; /* Una línea sutil arriba para separar */
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: auto; /* Truco: empuja el footer al fondo si usas flexbox en body */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Espacio entre el texto y el enlace */
+    flex-wrap: wrap; /* Para que se adapte en móviles */
+}
+
+.main-footer p {
+    color: #666; /* Gris oscuro para el copyright */
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.separator {
+    color: #333; /* La barra vertical | */
+}
+
+/* Estilo del enlace a Menciones Legales */
+.legal-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.legal-link:hover {
+    color: #cfa355; /* Se pone dorado cuando pasas el mouse */
+    text-decoration: underline;
+}
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column; /* Uno debajo del otro en móvil */
+        gap: 10px;
+    }
+    .separator {
+        display: none; /* Ocultamos la barra en móvil */
+    }
+}
