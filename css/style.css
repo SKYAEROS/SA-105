@@ -19,45 +19,36 @@ body {
 }
 
 /* --- ESTILOS DEL VIDEO HERO --- */
-.hero {
-    position: relative;
-    height: 100vh;
-    /* Ocupa toda la altura de la pantalla */
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #000000;
-}
+
 
 .hero {
     position: relative;
-    height: 100vh;
+    /* height: 100vh; Removed for responsive height */
     width: 100%;
+    /* overflow: hidden; Removed to allow natural flow if needed, but safe to keep. Kept for safety */
     overflow: hidden;
     /* IMPORTANTE: Esto oculta los bordes del video */
 }
 
 /* El truco para que el iframe de YouTube cubra todo (simula object-fit: cover) */
+/* El truco para que el iframe de YouTube cubra todo (simula object-fit: cover) */
 .video-foreground,
 .video-foreground iframe,
 .video-foreground video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 56.25vw;
-    /* 100 / 1.77 (16:9 aspect ratio) = 56.25 */
-    min-height: 100vh;
-    min-width: 177.77vh;
-    /* 100 * 1.77 = 177.77 */
-    transform: translate(-50%, -50%);
+    position: relative;
+    /* top: 50%;
+    left: 50%; */
+    width: 100%;
+    height: auto;
+    /* min-height: 100vh;
+    min-width: 177.77vh; 
+    transform: translate(-50%, -50%); */
     /* Centrado perfecto */
     pointer-events: none;
     /* CLAVE: Evita que la gente pueda pausar o clicar en el video */
     z-index: 1;
+    display: block;
+    /* Removes potential whitespace */
 }
 
 /* Ajuste de la capa oscura para que siga funcionando encima */
@@ -149,10 +140,10 @@ body {
     width: 100%;
     max-width: 1200px;
     /* Ancho máximo para que no se desparrame en pantallas gigantes */
-    height: 800px;
+    height: 750px;
     /* Altura fija necesaria para este tipo de diseño "flotante" */
-    margin: 100px auto;
-    /* Centrado en la página con margen arriba/abajo */
+    margin: 100px auto 20px;
+    /* Centrado en la página con margen arriba reduced bottom margin */
     /* background-color: #111; Útil para ver los límites mientras diseñas */
 }
 
@@ -1757,30 +1748,38 @@ button {
         font-size: 2.5rem;
     }
 }
+
 .main-footer {
-    background-color: #000; /* Fondo negro */
-    border-top: 1px solid #222; /* Una línea sutil arriba para separar */
+    background-color: #000;
+    /* Fondo negro */
+    border-top: 1px solid #222;
+    /* Una línea sutil arriba para separar */
     padding: 30px 20px;
     text-align: center;
-    margin-top: auto; /* Truco: empuja el footer al fondo si usas flexbox en body */
+    margin-top: auto;
+    /* Truco: empuja el footer al fondo si usas flexbox en body */
 }
 
 .footer-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Espacio entre el texto y el enlace */
-    flex-wrap: wrap; /* Para que se adapte en móviles */
+    gap: 15px;
+    /* Espacio entre el texto y el enlace */
+    flex-wrap: wrap;
+    /* Para que se adapte en móviles */
 }
 
 .main-footer p {
-    color: #666; /* Gris oscuro para el copyright */
+    color: #666;
+    /* Gris oscuro para el copyright */
     font-size: 0.9rem;
     margin: 0;
 }
 
 .separator {
-    color: #333; /* La barra vertical | */
+    color: #333;
+    /* La barra vertical | */
 }
 
 /* Estilo del enlace a Menciones Legales */
@@ -1792,17 +1791,21 @@ button {
 }
 
 .legal-link:hover {
-    color: #cfa355; /* Se pone dorado cuando pasas el mouse */
+    color: #cfa355;
+    /* Se pone dorado cuando pasas el mouse */
     text-decoration: underline;
 }
 
 /* RESPONSIVE MÓVIL */
 @media (max-width: 600px) {
     .footer-content {
-        flex-direction: column; /* Uno debajo del otro en móvil */
+        flex-direction: column;
+        /* Uno debajo del otro en móvil */
         gap: 10px;
     }
+
     .separator {
-        display: none; /* Ocultamos la barra en móvil */
+        display: none;
+        /* Ocultamos la barra en móvil */
     }
 }
