@@ -128,5 +128,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
     </div>
-
+<footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Benj.RLT & Luis Rivas - Projet SAE 105</p>
+            <span class="separator">|</span>
+            <a href="mentions.html" class="legal-link">Mentions Légales</a>
+        </div>
+    </footer>
+</body>
 </html>
