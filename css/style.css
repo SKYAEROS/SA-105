@@ -1045,7 +1045,12 @@ button {
 .slider-container::-webkit-scrollbar {
     display: none;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 .preuve-body {
     background-color: #050505;
@@ -1068,12 +1073,15 @@ button {
 
 /* --- ESCENARIO 3D --- */
 .scene {
-    width: 400px;  /* Ancho Landscape */
-    height: 250px; /* Alto Landscape */
+    width: 400px;
+    /* Ancho Landscape */
+    height: 250px;
+    /* Alto Landscape */
     position: relative;
     /* Perspectiva más alta (1500px) hace que se vea más lejos y menos "ojo de pez" */
-    perspective: 1500px; 
-    margin-top: 50px; /* Un poco de aire */
+    perspective: 1500px;
+    margin-top: 50px;
+    /* Un poco de aire */
 }
 
 .carousel {
@@ -1091,14 +1099,20 @@ button {
 }
 
 @keyframes rotateCircle {
-    from { transform: rotateY(0deg); }
-    to { transform: rotateY(-360deg); }
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(-360deg);
+    }
 }
 
 /* --- LAS TARJETAS (POSICIÓN 3D) --- */
 .carousel__cell {
     position: absolute;
-    width: 380px; /* Un poco menos que el contenedor */
+    width: 380px;
+    /* Un poco menos que el contenedor */
     height: 230px;
     left: 10px;
     top: 10px;
@@ -1114,7 +1128,8 @@ button {
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Animación suave */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* Animación suave */
     background: #000;
 }
 
@@ -1122,21 +1137,38 @@ button {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.7; /* Un poco oscuras por defecto */
+    opacity: 0.7;
+    /* Un poco oscuras por defecto */
     transition: opacity 0.4s ease;
 }
 
 /* --- HOVER EFECTOS --- */
-/* Cuando pasas el mouse por la celda, afectamos al contenedor de imagen */
-.carousel__cell:hover .image-container {
-    transform: scale(1.1); /* Zoom suave al 110% */
-    box-shadow: 0 0 40px rgba(207, 163, 85, 0.6); /* Brillo dorado */
-    border-color: #cfa355;
-    z-index: 100; /* Asegura que se vea encima */
+/* --- HOVER EFFECT: FOCUS MODE --- */
+
+/* 1. When hovering the CAROUSEL (the whole ring), fade out and blur ALL images */
+.carousel:hover .image-container {
+    filter: blur(5px) grayscale(50%);
+    opacity: 0.3;
+    transform: scale(0.9);
+    transition: all 0.5s ease;
 }
 
+/* 2. When hovering a SPECIFIC CELL, bring it back to life and Zoom it */
+.carousel__cell:hover .image-container {
+    filter: none !important;
+    /* Force clarity */
+    opacity: 1 !important;
+    transform: scale(1.8) !important;
+    /* Big Zoom */
+    box-shadow: 0 0 50px rgba(207, 163, 85, 0.8);
+    border-color: #fff;
+    z-index: 1000;
+    /* Attempt to layer on top */
+}
+
+/* Also ensure the image inside is fully visible */
 .carousel__cell:hover img {
-    opacity: 1; /* Imagen a todo color */
+    opacity: 1;
 }
 
 /* Título dentro de la foto */
@@ -1146,14 +1178,16 @@ button {
     left: 0;
     width: 100%;
     padding: 15px;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
     text-align: center;
-    transform: translateY(100%); /* Oculto por defecto (abajo) */
+    transform: translateY(100%);
+    /* Oculto por defecto (abajo) */
     transition: transform 0.3s ease;
 }
 
 .carousel__cell:hover .card-info {
-    transform: translateY(0); /* Aparece al hacer hover */
+    transform: translateY(0);
+    /* Aparece al hacer hover */
 }
 
 /* --- MATEMÁTICA DEL CÍRCULO (LANDSCAPE) --- */
@@ -1161,14 +1195,37 @@ button {
    debe ser mayor. He calculado aprox 650px para 8 fotos de 400px de ancho.
 */
 
-.carousel__cell:nth-child(1) { transform: rotateY(0deg) translateZ(650px); }
-.carousel__cell:nth-child(2) { transform: rotateY(45deg) translateZ(650px); }
-.carousel__cell:nth-child(3) { transform: rotateY(90deg) translateZ(650px); }
-.carousel__cell:nth-child(4) { transform: rotateY(135deg) translateZ(650px); }
-.carousel__cell:nth-child(5) { transform: rotateY(180deg) translateZ(650px); }
-.carousel__cell:nth-child(6) { transform: rotateY(225deg) translateZ(650px); }
-.carousel__cell:nth-child(7) { transform: rotateY(270deg) translateZ(650px); }
-.carousel__cell:nth-child(8) { transform: rotateY(315deg) translateZ(650px); }
+.carousel__cell:nth-child(1) {
+    transform: rotateY(0deg) translateZ(650px);
+}
+
+.carousel__cell:nth-child(2) {
+    transform: rotateY(45deg) translateZ(650px);
+}
+
+.carousel__cell:nth-child(3) {
+    transform: rotateY(90deg) translateZ(650px);
+}
+
+.carousel__cell:nth-child(4) {
+    transform: rotateY(135deg) translateZ(650px);
+}
+
+.carousel__cell:nth-child(5) {
+    transform: rotateY(180deg) translateZ(650px);
+}
+
+.carousel__cell:nth-child(6) {
+    transform: rotateY(225deg) translateZ(650px);
+}
+
+.carousel__cell:nth-child(7) {
+    transform: rotateY(270deg) translateZ(650px);
+}
+
+.carousel__cell:nth-child(8) {
+    transform: rotateY(315deg) translateZ(650px);
+}
 
 /* Ajuste Móvil */
 @media (max-width: 768px) {
@@ -1177,17 +1234,219 @@ button {
         height: 180px;
         perspective: 1000px;
     }
+
     .carousel__cell {
         width: 260px;
         height: 160px;
     }
+
     /* Reducimos el radio en móvil */
-    .carousel__cell:nth-child(1) { transform: rotateY(0deg) translateZ(450px); }
-    .carousel__cell:nth-child(2) { transform: rotateY(45deg) translateZ(450px); }
-    .carousel__cell:nth-child(3) { transform: rotateY(90deg) translateZ(450px); }
-    .carousel__cell:nth-child(4) { transform: rotateY(135deg) translateZ(450px); }
-    .carousel__cell:nth-child(5) { transform: rotateY(180deg) translateZ(450px); }
-    .carousel__cell:nth-child(6) { transform: rotateY(225deg) translateZ(450px); }
-    .carousel__cell:nth-child(7) { transform: rotateY(270deg) translateZ(450px); }
-    .carousel__cell:nth-child(8) { transform: rotateY(315deg) translateZ(450px); }
+    .carousel__cell:nth-child(1) {
+        transform: rotateY(0deg) translateZ(450px);
+    }
+
+    .carousel__cell:nth-child(2) {
+        transform: rotateY(45deg) translateZ(450px);
+    }
+
+    .carousel__cell:nth-child(3) {
+        transform: rotateY(90deg) translateZ(450px);
+    }
+
+    .carousel__cell:nth-child(4) {
+        transform: rotateY(135deg) translateZ(450px);
+    }
+
+    .carousel__cell:nth-child(5) {
+        transform: rotateY(180deg) translateZ(450px);
+    }
+
+    .carousel__cell:nth-child(6) {
+        transform: rotateY(225deg) translateZ(450px);
+    }
+
+    .carousel__cell:nth-child(7) {
+        transform: rotateY(270deg) translateZ(450px);
+    }
+
+    .carousel__cell:nth-child(8) {
+        transform: rotateY(315deg) translateZ(450px);
+    }
+}
+
+/* --- CONTACT PAGE STYLES --- */
+.contact-wrapper {
+    background: #050505;
+    padding-top: 120px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    width: 90%;
+    max-width: 1400px;
+}
+
+/* Info Side */
+.contact-info .page-title {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-info .subtitle {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 50px;
+    max-width: 80%;
+}
+
+/* Social Cards */
+.social-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.social-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    max-width: 400px;
+}
+
+.social-card .icon {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #050505;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover Effects */
+.social-card:hover {
+    transform: translateX(10px);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.social-card.instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.social-card.facebook:hover {
+    background: #1877F2;
+}
+
+.social-card.youtube:hover {
+    background: #FF0000;
+}
+
+/* Form Side */
+.form-container {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #333;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 1.1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: #666;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Floating Label Logic: Input has text or Focus */
+.input-group input:focus~label,
+.input-group input:not(:placeholder-shown)~label,
+.input-group textarea:focus~label,
+.input-group textarea:not(:placeholder-shown)~label {
+    top: -20px;
+    font-size: 0.8rem;
+    color: #cfa355;
+    font-weight: 600;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-bottom-color: #cfa355;
+}
+
+.send-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+    background: #cfa355;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .contact-info .page-title {
+        font-size: 2.5rem;
+    }
 }
