@@ -833,7 +833,7 @@ footer {
     left: 0;
     width: 100%;
     padding: 40px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), );
     text-align: center;
 }
 
