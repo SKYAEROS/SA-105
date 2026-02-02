@@ -27,13 +27,13 @@
                 <li><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
-         <div class="burger-menu" id="burgerMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+        <div class="burger-menu" id="burgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
-    <div class="main-wrapper contact-wrapper" style="align-items: flex-start; padding-top: 150px;">
+    <div class="main-wrapper contact-wrapper services-wrapper" style="align-items: flex-start; padding-top: 150px;">
 
         <div class="services-container">
             <h1 class="page-title" style="text-align: center; margin-bottom: 60px;">Mes Prestations</h1>
@@ -113,19 +113,23 @@
                 fields: `
                     <div class="input-group">
                         <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Type de Caméra</label>
-                        <select name="camera" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
-                            <option value="fx3">Sony FX3 (Cinéma)</option>
-                            <option value="hybrid">Hybride (Standard)</option>
-                            <option value="drone">Drone FPV</option>
+                        <select name="camera" id="camera" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="fx3" data-price="200">Sony FX3 (Cinéma) +200€</option>
+                            <option value="hybrid" data-price="100">Hybride (Standard) +100€</option>
+                            <option value="drone" data-price="300">Drone FPV +300€</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Durée estimée</label>
-                        <select name="duration" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
-                            <option value="half_day">Demi-journée (4h)</option>
-                            <option value="full_day">Journée complète (8h)</option>
-                            <option value="multi">Plusieurs jours</option>
+                        <select name="duration" id="duration" onchange="toggleDaysField(this)" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="half_day" data-price="400">Demi-journée (4h) +400€</option>
+                            <option value="full_day" data-price="700">Journée complète (8h) +700€</option>
+                            <option value="multi" data-daily-rate="600">Plusieurs jours (Tarif journalier)</option>
                         </select>
+                         <div id="days-container" style="display:none; margin-top:10px;">
+                            <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Nombre de jours</label>
+                            <input type="number" name="nb_days" id="nb_days" value="2" min="2" max="10" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                        </div>
                     </div>
                 `
             },
@@ -134,18 +138,18 @@
                 fields: `
                    <div class="input-group">
                         <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Volume de Rushs</label>
-                        <select name="rush_volume" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
-                            <option value="low">< 10 Go</option>
-                            <option value="med">10 Go - 50 Go</option>
-                            <option value="high">> 50 Go</option>
+                        <select name="rush_volume" id="rush_volume" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="low" data-price="0">< 10 Go (Inclus)</option>
+                            <option value="med" data-price="50">10 Go - 50 Go +50€</option>
+                            <option value="high" data-price="100">> 50 Go +100€</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Style</label>
-                        <select name="style" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
-                            <option value="dynamic">Dynamique / Réseaux Sociaux</option>
-                            <option value="cinematic">Cinématique / Docu</option>
-                            <option value="corp">Corporate / Interview</option>
+                        <select name="style" id="style" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="dynamic" data-price="200">Dynamique / Réseaux Sociaux +200€</option>
+                            <option value="cinematic" data-price="300">Cinématique / Docu +300€</option>
+                            <option value="corp" data-price="150">Corporate / Interview +150€</option>
                         </select>
                     </div>
                 `
@@ -158,11 +162,11 @@
                         <input type="text" name="project_type" placeholder="Ex: Publicité, Clip, Court-métrage" style="width:100%; padding:10px; background:transparent; border-bottom:1px solid #fff; color:#fff;">
                     </div>
                     <div class="input-group">
-                        <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Budget Estimé</label>
-                        <select name="budget" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
-                            <option value="small">< 500€</option>
-                            <option value="med">500€ - 2000€</option>
-                            <option value="large">> 2000€</option>
+                        <label style="position:static; color:#ccc; margin-bottom:5px; display:block;">Budget de départ</label>
+                        <select name="budget" id="budget" style="width:100%; padding:10px; background:#222; color:#fff; border:1px solid #444; border-radius:5px;">
+                            <option value="small" data-price="500">Pack Small (500€)</option>
+                            <option value="med" data-price="1500">Pack Medium (1500€)</option>
+                            <option value="large" data-price="3000">Pack Large (3000€)</option>
                         </select>
                     </div>
                 `
@@ -184,18 +188,52 @@
             document.body.style.overflow = "auto";
         }
 
+        function toggleDaysField(select) {
+            const container = document.getElementById('days-container');
+            if (select.value === 'multi') {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
         function addToCart(e) {
             e.preventDefault();
             // Get form data
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData.entries());
 
+            // --- PRICE CALCULATION LOGIC ---
+            let totalPrice = 0;
+            const formElements = e.target.elements;
+
+            // Iterate over form elements to find selects with data-price
+            for (let element of formElements) {
+                if (element.tagName === 'SELECT') {
+                    const selectedOption = element.options[element.selectedIndex];
+
+                    // Specific Logic for Multi-Day
+                    if (element.name === 'duration' && element.value === 'multi') {
+                        const dailyRate = parseFloat(selectedOption.getAttribute('data-daily-rate')) || 0;
+                        const daysInput = document.getElementById('nb_days');
+                        const days = parseInt(daysInput.value) || 0;
+                        totalPrice += dailyRate * days;
+                    } else {
+                        const price = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+                        totalPrice += price;
+                    }
+                }
+            }
+
+            data.totalPrice = totalPrice; // Add calculated price to data object
+            // -------------------------------
+
             // Get existing cart or init
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
             cart.push(data);
             localStorage.setItem('cart', JSON.stringify(cart));
 
-            alert("Service ajouté au panier !");
+            alert("Service ajouté au panier ! Montant estimé: " + totalPrice + "€");
             closeModal();
             // Redirect to basket or stay? User said "add to panier"
             // location.href = 'panier.html'; 

@@ -25,11 +25,11 @@
                 <li><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
-         <div class="burger-menu" id="burgerMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+        <div class="burger-menu" id="burgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
     <div class="cart-wrapper">
@@ -60,27 +60,43 @@
 
             actions.style.display = 'block';
 
+            let grandTotal = 0;
+
             cart.forEach((item, index) => {
                 let details = '';
-                // Format details based on keys (skip serviceType)
+                // Format details based on keys (skip serviceType, notes, totalPrice)
                 for (const [key, value] of Object.entries(item)) {
-                    if (key !== 'serviceType' && key !== 'notes') {
+                    if (key !== 'serviceType' && key !== 'notes' && key !== 'totalPrice') {
                         details += `<span style="margin-right:15px; text-transform:capitalize;"><strong>${key}:</strong> ${value}</span>`;
                     }
                 }
                 if (item.notes) details += `<br><em style="font-size:0.8rem; color:#888;">Note: ${item.notes}</em>`;
 
+                const price = item.totalPrice ? item.totalPrice : 0;
+                grandTotal += parseFloat(price);
+
                 const div = document.createElement('div');
                 div.className = 'cart-item';
                 div.innerHTML = `
                     <div class="item-info">
-                        <h3>${getServiceTitle(item.serviceType)}</h3>
+                        <h3>${getServiceTitle(item.serviceType)} <span style="color:#cfa355; margin-left:10px;">${price}€</span></h3>
                         <div class="item-details">${details}</div>
                     </div>
                     <button class="remove-btn" onclick="removeItem(${index})">Retirer</button>
                 `;
                 container.appendChild(div);
             });
+
+            // Display Grand Total
+            const totalDiv = document.createElement('div');
+            totalDiv.className = 'cart-total';
+            totalDiv.style.marginTop = '30px';
+            totalDiv.style.textAlign = 'right';
+            totalDiv.style.fontSize = '2rem';
+            totalDiv.style.fontWeight = 'bold';
+            totalDiv.style.color = '#fff';
+            totalDiv.innerHTML = `Total Estimé : <span style="color:#cfa355;">${grandTotal}€</span>`;
+            container.appendChild(totalDiv);
         }
 
         function getServiceTitle(type) {
@@ -102,7 +118,7 @@
         // Init
         renderCart();
     </script>
-<footer class="main-footer">
+    <footer class="main-footer">
         <div class="footer-content">
             <p>&copy; 2026 Benj.RLT & Luis Rivas - Projet SAE 105</p>
             <span class="separator">|</span>
@@ -110,27 +126,27 @@
         </div>
     </footer>
     <script>
-    // 1. Capturamos los elementos por su ID
-    const burger = document.getElementById('burgerMenu');
-    const nav = document.getElementById('navLinks');
+        // 1. Capturamos los elementos por su ID
+        const burger = document.getElementById('burgerMenu');
+        const nav = document.getElementById('navLinks');
 
-    // 2. Escuchamos el "click"
-    burger.addEventListener('click', () => {
-        // Añadimos o quitamos la clase 'active' al menú (para que entre/salga)
-        nav.classList.toggle('active');
-        
-        // Añadimos o quitamos la clase 'toggle' al botón (para que se haga X)
-        burger.classList.toggle('toggle');
-    });
+        // 2. Escuchamos el "click"
+        burger.addEventListener('click', () => {
+            // Añadimos o quitamos la clase 'active' al menú (para que entre/salga)
+            nav.classList.toggle('active');
 
-    // 3. (Opcional) Cerrar el menú si tocamos un enlace
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            burger.classList.remove('toggle');
+            // Añadimos o quitamos la clase 'toggle' al botón (para que se haga X)
+            burger.classList.toggle('toggle');
         });
-    });
-</script>
+
+        // 3. (Opcional) Cerrar el menú si tocamos un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                burger.classList.remove('toggle');
+            });
+        });
+    </script>
 </body>
 
 </html>

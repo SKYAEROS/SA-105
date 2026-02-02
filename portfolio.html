@@ -25,13 +25,13 @@
                 <li><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
-         <div class="burger-menu" id="burgerMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+        <div class="burger-menu" id="burgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
-    <div class="main-wrapper">
+    <div class="main-wrapper portfolio-wrapper">
 
         <div class="drag-indicator">
             <span>&larr; Scroll to explore &rarr;</span>
@@ -45,9 +45,7 @@
                     <a href="#slide-2" class="nav-anchor next"></a>
 
                     <video autoplay muted loop playsinline class="video-bg">
-                        <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
-                            type="video/mp4" alt="Proyecto 1">
+                        <source src="videos/citroenshowreel.mp4" type="video/mp4" alt="Proyecto 1">
                     </video>
                     <div class="slide-content">
                         <h2>KOMT GOED</h2>
@@ -62,9 +60,7 @@
                     <a href="#slide-3" class="nav-anchor next"></a>
 
                     <video autoplay muted loop playsinline class="video-bg">
-                        <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-                            type="video/mp4" alt="Proyecto 2">
+                        <source src="videos/creatyvesportfolio.mp4" type="video/mp4" alt="Proyecto 2">
                     </video>
                     <div class="slide-content">
                         <h2>FUTURE</h2>
@@ -79,9 +75,7 @@
                     <a href="#slide-4" class="nav-anchor next"></a>
 
                     <video autoplay muted loop playsinline class="video-bg">
-                        <source
-                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-                            type="video/mp4" alt="Proyecto 3">
+                        <source src="videos/defiinsta.mp4" type="video/mp4" alt="Proyecto 3">
                     </video>
                     <div class="slide-content">
                         <h2>ADRENALINE</h2>
@@ -96,8 +90,7 @@
                     <a href="#slide-1" class="nav-anchor next"></a>
 
                     <video autoplay muted loop playsinline class="video-bg">
-                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
-                            type="video/mp4" alt="Proyecto 4">
+                        <source src="videos/EscaladeWEB.mp4" type="video/mp4" alt="Proyecto 4">
                     </video>
                     <div class="slide-content"> <!-- Added missing wrapper for consistent styling -->
                         <h2>CINEMA</h2>
@@ -185,35 +178,35 @@
             setTimeout(() => isWheeling = false, 500);
         });
     </script>
-<footer class="main-footer">
+    <footer class="main-footer">
         <div class="footer-content">
             <p>&copy; 2026 Benj.RLT & Luis Rivas - Projet SAE 105</p>
             <span class="separator">|</span>
             <a href="mentions.html" class="legal-link">Mentions Légales</a>
         </div>
     </footer>
-<script>
-    // 1. Capturamos los elementos por su ID
-    const burger = document.getElementById('burgerMenu');
-    const nav = document.getElementById('navLinks');
+    <script>
+        // 1. Capturamos los elementos por su ID
+        const burger = document.getElementById('burgerMenu');
+        const nav = document.getElementById('navLinks');
 
-    // 2. Escuchamos el "click"
-    burger.addEventListener('click', () => {
-        // Añadimos o quitamos la clase 'active' al menú (para que entre/salga)
-        nav.classList.toggle('active');
-        
-        // Añadimos o quitamos la clase 'toggle' al botón (para que se haga X)
-        burger.classList.toggle('toggle');
-    });
+        // 2. Escuchamos el "click"
+        burger.addEventListener('click', () => {
+            // Añadimos o quitamos la clase 'active' al menú (para que entre/salga)
+            nav.classList.toggle('active');
 
-    // 3. (Opcional) Cerrar el menú si tocamos un enlace
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            burger.classList.remove('toggle');
+            // Añadimos o quitamos la clase 'toggle' al botón (para que se haga X)
+            burger.classList.toggle('toggle');
         });
-    });
-</script>
+
+        // 3. (Opcional) Cerrar el menú si tocamos un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                burger.classList.remove('toggle');
+            });
+        });
+    </script>
 </body>
 
 </html>

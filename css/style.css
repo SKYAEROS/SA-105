@@ -9,11 +9,15 @@ html {
     scroll-behavior: smooth;
 }
 
+html {
+    background-color: #000000;
+}
+
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #87BAC3;
+    background-color: #000000 !important;
     /* Palette Dark 1 */
-    color: #D6F4ED;
+    color: #ffffff;
     /* Palette Light Mint */
     line-height: 1.6;
 }
@@ -791,10 +795,11 @@ footer {
 }
 
 /* Efecto de escala */
+/* Efecto de escala */
 .slide {
     transform: scale(0.9);
     transition: transform 0.5s ease;
-    opacity: 0.5;
+    opacity: 1 !important;
     /* Un poco transparentes las de los lados */
 }
 
@@ -911,6 +916,11 @@ button {
     object-fit: cover;
     pointer-events: none;
     display: block;
+    background-color: #000000 !important;
+    opacity: 1 !important;
+    mix-blend-mode: normal !important;
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes pulse {
@@ -955,6 +965,13 @@ button {
 .slider-container::-webkit-scrollbar {
     display: none;
     /* Chrome/Safari */
+}
+
+/* CORRECTIF VOILE BLEU */
+.slider-container,
+.slide,
+.slide-inner {
+    background-color: #000000 !important;
 }
 
 /* --- LAS FOTOS --- */
@@ -1442,6 +1459,11 @@ button {
 }
 
 /* --- SERVICES PAGE --- */
+.services-wrapper,
+.portfolio-wrapper {
+    background-color: #000000 !important;
+}
+
 .services-container {
     width: 90%;
     max-width: 1200px;
