@@ -64,11 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
-         <div class="burger-menu" id="burgerMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+        <div class="burger-menu" id="burgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
     <div class="main-wrapper contact-wrapper">
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="icon">IG</div> <!-- Placeholder for Icon -->
                         <span>Instagram</span>
                     </a>
-                    <a href="https://facebook.com" target="_blank" class="social-card facebook">
+                    <a href="https://www.facebook.com/share/18H993xcfG/" target="_blank" class="social-card facebook">
                         <div class="icon">FB</div>
                         <span>Facebook</span>
                     </a>
@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
     </div>
-<footer class="main-footer">
+    <footer class="main-footer">
         <div class="footer-content">
             <p>&copy; 2026 Benj.RLT & Luis Rivas - Projet SAE 105</p>
             <span class="separator">|</span>
@@ -141,26 +141,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </footer>
     <script>
-    // 1. Capturamos los elementos por su ID
-    const burger = document.getElementById('burgerMenu');
-    const nav = document.getElementById('navLinks');
+        // 1. Capturamos los elementos por su ID
+        const burger = document.getElementById('burgerMenu');
+        const nav = document.getElementById('navLinks');
 
-    // 2. Escuchamos el "click"
-    burger.addEventListener('click', () => {
-        // Añadimos o quitamos la clase 'active' al menú (para que entre/salga)
-        nav.classList.toggle('active');
-        
-        // Añadimos o quitamos la clase 'toggle' al botón (para que se haga X)
-        burger.classList.toggle('toggle');
-    });
+        // 2. Escuchamos el "click"
+        burger.addEventListener('click', () => {
+            // Añadimos o quitamos la clase 'active' al menú (para que entre/salga)
+            nav.classList.toggle('active');
 
-    // 3. (Opcional) Cerrar el menú si tocamos un enlace
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            burger.classList.remove('toggle');
+            // Añadimos o quitamos la clase 'toggle' al botón (para que se haga X)
+            burger.classList.toggle('toggle');
         });
-    });
-</script>
+
+        // 3. (Opcional) Cerrar el menú si tocamos un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                burger.classList.remove('toggle');
+            });
+        });
+    </script>
 </body>
+
 </html>

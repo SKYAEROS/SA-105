@@ -800,6 +800,9 @@ footer {
     transform: scale(0.9);
     transition: transform 0.5s ease;
     opacity: 1 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     /* Un poco transparentes las de los lados */
 }
 
@@ -917,10 +920,38 @@ button {
     pointer-events: none;
     display: block;
     background-color: #000000 !important;
-    opacity: 0.5 !important;
+    opacity: 1 !important;
     mix-blend-mode: normal !important;
     position: relative;
     z-index: 1;
+}
+
+/* TEXTO ENCIMA DE LA FOTO (Estilo Aanstekelijk) */
+/* TEXTO BAJO LA FOTO */
+.slide-content {
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+    /* Reset absolute positioning */
+    background: none;
+    /* Remove gradient/glass */
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+}
+
+.slide-content h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.slide-content p {
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
 }
 
 @keyframes pulse {
@@ -947,7 +978,7 @@ button {
     scroll-snap-type: x mandatory;
 
     /* Configuración de espacio */
-    height: 65vh;
+    height: 75vh;
     gap: 40px;
     /* Espacio entre fotos */
 
@@ -991,7 +1022,7 @@ button {
 
 .slide-inner {
     width: 100%;
-    height: 100%;
+    height: 85%;
     border-radius: 20px;
     overflow: hidden;
     position: relative;
@@ -1016,9 +1047,15 @@ button {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 40px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    height: 15%;
+    padding: 0;
+    background: transparent;
     text-align: center;
+    z-index: 10;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .slide-content h2 {
@@ -1789,7 +1826,7 @@ button {
     /* Una línea sutil arriba para separar */
     padding: 30px 20px;
     text-align: center;
-    margin-top: auto;
+    margin-top: 100px;
     /* Truco: empuja el footer al fondo si usas flexbox en body */
 }
 
