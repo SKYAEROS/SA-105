@@ -1,4 +1,4 @@
-/* Reset básico para quitar márgenes por defecto */
+/* Réinitialisation de base pour supprimer les marges par défaut */
 * {
     margin: 0;
     padding: 0;
@@ -22,11 +22,11 @@ body {
     line-height: 1.6;
 }
 
-/* --- ESTILOS DEL VIDEO HERO --- */
+/* --- STYLES DE LA VIDÉO HÉRO --- */
 .hero {
     position: relative;
     height: 100vh;
-    /* Ocupa toda la altura de la pantalla */
+    /* Occupe toute la hauteur de l'écran */
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -42,11 +42,10 @@ body {
     width: 100%;
     /* overflow: hidden; Removed to allow natural flow if needed, but safe to keep. Kept for safety */
     overflow: hidden;
-    /* IMPORTANTE: Esto oculta los bordes del video */
+    /* IMPORTANT : Cela masque les bords de la vidéo */
 }
 
-/* El truco para que el iframe de YouTube cubra todo (simula object-fit: cover) */
-/* El truco para que el iframe de YouTube cubra todo (simula object-fit: cover) */
+/* L'astuce pour que l'iframe YouTube couvre tout (simula object-fit: cover) */
 .video-foreground,
 .video-foreground iframe,
 .video-foreground video {
@@ -58,18 +57,18 @@ body {
     /* min-height: 100vh;
     min-width: 177.77vh; 
     transform: translate(-50%, -50%); */
-    /* Centrado perfecto */
+    /* Centrage parfait */
     pointer-events: none;
-    /* CLAVE: Evita que la gente pueda pausar o clicar en el video */
+    /* CLÉ : Empêche les gens de mettre en pause ou de cliquer sur la vidéo */
     z-index: 1;
     display: block;
     /* Removes potential whitespace */
 }
 
-/* Ajuste de la capa oscura para que siga funcionando encima */
+/* Ajustement de la couche sombre pour qu'elle continue de fonctionner par-dessus */
 .overlay {
     z-index: 2;
-    /* Asegúrate de que esto sea mayor que el z-index del video */
+    /* Assurez-vous que cela soit supérieur au z-index de la vidéo */
 }
 
 .hero-content {
@@ -99,21 +98,21 @@ body {
     font-weight: 300;
 }
 
-/* --- ESTILOS "MAGAZINE LAYOUT" (Texto centro, fotos lados) --- */
+/* --- STYLES "MAGAZINE LAYOUT" (Texte au centre, photos sur les côtés) --- */
 .magazine-layout {
     display: grid;
-    /* La magia: 3 columnas. 
-       1fr (espacio libre) - 600px (texto fijo) - 1fr (espacio libre) */
+    /* La magie : 3 colonnes. 
+       1fr (espace libre) - 600px (texte fixe) - 1fr (espace libre) */
     grid-template-columns: 1fr 600px 1fr;
     gap: 40px;
-    /* Espacio entre columnas */
+    /* Espace entre les colonnes */
     max-width: 1400px;
     margin: 100px auto;
-    /* Centrado en la página */
+    /* Centré sur la page */
     padding: 0 20px;
 }
 
-/* Estilo del texto central */
+/* Style du texte central */
 .main-text {
     font-size: 1.2rem;
     text-align: justify;
@@ -128,18 +127,18 @@ body {
 .main-text p {
     margin-bottom: 20px;
     color: #bbb;
-    /* Gris claro para lectura cómoda */
+    /* Gris clair pour une lecture confortable */
 }
 
-/* Estilo de las columnas laterales (imágenes) */
+/* Style des colonnes latérales (images) */
 .side-column {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    /* Espacio vertical entre fotos */
+    /* Espace vertical entre les photos */
 }
 
-/* Reset y estilos base */
+/* Réinitialisation et styles de base */
 * {
     margin: 0;
     padding: 0;
@@ -148,31 +147,31 @@ body {
 
 /* Duplicate body reset removed */
 
-/* --- SECCIÓN COLLAGE --- */
+/* --- SECTION COLLAGE --- */
 .collage-section {
     position: relative;
-    /* CLAVE: Hace que los hijos absolutos se posicionen respecto a esto */
+    /* CLÉ : Rend le positionnement des enfants absolus relatif à ceci */
     width: 100%;
     max-width: 1200px;
-    /* Ancho máximo para que no se desparrame en pantallas gigantes */
+    /* Largeur maximale pour ne pas s'étaler sur les écrans géants */
     height: 750px;
-    /* Altura fija necesaria para este tipo de diseño "flotante" */
+    /* Hauteur fixe nécessaire pour ce type de design "flottant" */
     margin: 100px auto 20px;
-    /* Centrado en la página con margen arriba reduced bottom margin */
-    /* background-color: #111; Útil para ver los límites mientras diseñas */
+    /* Centré sur la page avec marge en haut reduced bottom margin */
+    /* background-color: #111; Utile pour voir les limites pendant le design */
 }
 
-/* --- CAJA DE TEXTO CENTRAL --- */
+/* --- BOÎTE DE TEXTE CENTRALE --- */
 .text-box-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Truco perfecto para centrar absolutamente */
+    /* Astuce parfaite pour centrer en absolu */
     width: 500px;
-    /* Ancho fijo de la caja de texto */
+    /* Largeur fixe de la boîte de texte */
     z-index: 10;
-    /* Asegura que el texto quede por encima si algo se solapa */
+    /* Assure que le texte reste au-dessus si quelque chose se chevauche */
 }
 
 .text-box {
@@ -200,20 +199,19 @@ body {
     line-height: 1.6;
     margin-bottom: 20px;
     color: #ccc;
-    /* Texto un poco más gris para contraste */
+    /* Texte un peu plus gris pour le contraste */
 }
 
-/* --- IMÁGENES FLOTANTES --- */
+/* --- IMAGES FLOTTANTES --- */
 .floating-image {
     position: absolute;
-    /* Posicionamiento libre */
+    /* Positionnement libre */
     border-radius: 12px;
-    /* Esquinas redondeadas en las fotos */
+    /* Coins arrondis sur les photos */
     overflow: hidden;
-    /* Para que la imagen respete el borde redondeado */
+    /* Pour que l'image respecte le bord arrondi */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    /* Sombra para dar profundidad */
-    /* Sombra para dar profundidad */
+    /* Ombre pour donner de la profondeur */
     transition: transform 0.3s ease-out, z-index 0s 0.1s;
     /* Return fast (0.3s), delay z-index reset slightly to match */
     z-index: 1;
@@ -227,81 +225,81 @@ body {
 
 .floating-image:hover {
     transform: scale(1.1);
-    /* Pequeño zoom al pasar el mouse */
+    /* Petit zoom au survol de la souris */
     z-index: 15;
-    /* Trae la imagen al frente al hacer hover */
+    /* Amène l'image au premier plan au survol */
     transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 0s 0s;
     /* Instant z-index change on hover enter */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
-/* --- POSICIONES EXACTAS DE CADA IMAGEN (Ajusta estos % según tu gusto) --- */
+/* --- POSITIONS EXACTES DE CHAQUE IMAGE (Ajustez ces % selon votre goût) --- */
 
-/* Arriba Izquierda */
+/* Haut Gauche */
 .img-1 {
     top: 5%;
     left: 15%;
     width: 220px;
 }
 
-/* Centro Izquierda */
+/* Centre Gauche */
 .img-2 {
     top: 40%;
     left: 5%;
     width: 200px;
 }
 
-/* Abajo Izquierda */
+/* Bas Gauche */
 .img-3 {
     top: 70%;
     left: 20%;
     width: 180px;
 }
 
-/* Arriba Derecha */
+/* Haut Droite */
 .img-4 {
     top: 10%;
     right: 15%;
-    /* Usamos 'right' para posicionar desde la derecha */
+    /* On utilise 'right' pour positionner depuis la droite */
     width: 220px;
 }
 
-/* Centro Derecha */
+/* Centre Droite */
 .img-5 {
     top: 45%;
     right: 5%;
     width: 200px;
 }
 
-/* --- RESPONSIVE BÁSICO --- */
-/* Este diseño es difícil de adaptar a móvil. Lo mejor es "desarmarlo" */
+/* --- RESPONSIVE DE BASE --- */
+/* Ce design est difficile à adapter au mobile. Le mieux est de le "désassembler" */
 @media (max-width: 900px) {
     .collage-section {
         height: auto;
-        /* Quitamos la altura fija */
+        /* On retire la hauteur fixe */
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 20px;
     }
 
-    /* Quitamos el posicionamiento absoluto en móvil */
+    /* On retire le positionnement absolu sur mobile */
     .text-box-container,
     .floating-image {
         position: static;
         transform: none;
         width: 90%;
-        /* Ancho casi total */
+        /* Largeur presque totale */
         max-width: 500px;
         margin-bottom: 30px;
     }
 
     .text-box-container {
         order: 1;
-        /* Ponemos el texto primero */
+        /* On met le texte en premier */
     }
 
-    /* Ocultamos algunas fotos en móvil para no saturar */
+    /* On masque certaines photos sur mobile pour ne pas saturer */
     .img-2,
     .img-5 {
         display: none;
@@ -313,44 +311,22 @@ body {
         order: 2;
     }
 
-    /* Las fotos debajo */
+    /* Les photos en dessous */
 }
 
-.image-card img {
-    width: 100%;
-    /* La imagen se adapta al ancho de su columna */
-    border-radius: 4px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-.image-card img:hover {
-    transform: scale(1.02);
-    /* Efecto zoom suave al pasar el mouse */
-}
-
-.caption {
-    font-size: 0.8rem;
-    color: #666;
-    display: block;
-    margin-top: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* --- RESPONSIVE (Para móviles) --- */
+/* --- RESPONSIVE (Pour mobiles) --- */
 @media (max-width: 900px) {
     .magazine-layout {
-        /* En móvil, todo en una sola columna */
+        /* Sur mobile, tout en une seule colonne */
         grid-template-columns: 1fr;
         margin: 50px auto;
     }
 
     .side-column {
-        /* Ocultar las fotos laterales en móvil o ponerlas debajo */
-        /* order: 2; si quieres que bajen */
+        /* Masquer les photos latérales sur mobile ou les mettre en dessous */
+        /* order: 2; si vous voulez qu'elles descendent */
         display: none;
-        /* Opción: ocultarlas para simplificar lectura en móvil */
+        /* Option : les masquer pour simplifier la lecture sur mobile */
     }
 
     .hero-content h1 {
@@ -365,7 +341,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* --- FLUID CAROUSEL STYLES --- */
+/* --- STYLES DU CARROUSEL FLUIDE --- */
 .project-showcase {
     background-color: #53629E;
     color: #fff;
@@ -395,7 +371,7 @@ footer {
     /* Optimizer */
 }
 
-/* --- SLIDE STYLES --- */
+/* --- STYLES DES DIAPOSITIVES --- */
 .project-slide {
     display: grid !important;
     /* Force grid layout */
@@ -425,13 +401,12 @@ footer {
     /* Ensure active is on top */
 }
 
-/* Disable links on inactive slides so dragging/clicking to nav doesn't trigger link */
+/* Désactiver les liens sur les diapositives inactives pour que le glisser/cliquer ne déclenche pas le lien */
 .project-slide:not(.active) a {
     pointer-events: none;
 }
 
-/* --- CUSTOM CURSOR --- */
-/* --- CUSTOM CURSOR --- */
+/* --- CURSEUR PERSONNALISÉ --- */
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -478,44 +453,44 @@ footer {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* --- ANIMACIÓN DE ENTRADA (Removed per new logic) --- */
+/* --- ANIMATION D'ENTRÉE (Removed per new logic) --- */
 
-/* RESPONSIVE (MÓVIL) */
+/* RESPONSIVE (MOBILE) */
 @media (max-width: 768px) {
     .project-slide.active {
         grid-template-columns: 1fr;
-        /* Una sola columna en móvil */
+        /* Une seule colonne sur mobile */
         gap: 30px;
     }
 
     .carousel-nav {
         right: 50%;
         transform: translateX(50%);
-        /* Centrar números en móvil */
+        /* Centrer les numéros sur mobile */
     }
 }
 
-/* --- BARRA DE NAVEGACIÓN --- */
+/* --- BARRE DE NAVIGATION --- */
 .navbar {
     position: fixed;
-    /* CLAVE: Esto la deja pegada arriba */
+    /* CLÉ : Cela la garde collée en haut */
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    /* Separa Logo (izq) y Menú (der) */
+    /* Sépare Logo (gauche) et Menu (droite) */
     align-items: center;
     padding: 2% 5%;
-    /* Espacio alrededor */
+    /* Espace autour */
     z-index: 1000;
-    /* Asegura que esté SIEMPRE encima del video y fotos */
+    /* Assure que ce soit TOUJOURS au-dessus de la vidéo et des photos */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-    /* Un degradado sutil para leer mejor */
-    /* Si prefieres fondo negro sólido, usa: background-color: #000; */
+    /* Un dégradé subtil pour mieux lire */
+    /* Si vous préférez un fond noir solide, utilisez : background-color: #000; */
 }
 
-/* Estilo del Logo (CN) */
+/* Style du Logo (CN) */
 .logo {
     display: flex;
     align-items: center;
@@ -532,7 +507,7 @@ footer {
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 900;
-    /* Muy grueso */
+    /* Très épais */
     letter-spacing: 2px;
 }
 
@@ -560,28 +535,28 @@ footer {
     opacity: 0.8;
 }
 
-/* Estilo de la lista del menú */
+/* Style de la liste du menu */
 .nav-links {
     list-style: none;
-    /* Quita los puntos de la lista */
+    /* Retire les puces de la liste */
     display: flex;
-    /* Pone los elementos en línea horizontal */
+    /* Met les éléments en ligne horizontale */
     gap: 40px;
-    /* Espacio entre cada botón */
+    /* Espace entre chaque bouton */
 }
 
-/* Estilo de los enlaces (botones) */
+/* Style des liens (boutons) */
 .nav-links a {
     color: #fff;
     text-decoration: none;
     font-size: 0.8rem;
-    /* Texto pequeño y elegante como la referencia */
+    /* Texte petit et élégant comme la référence */
     font-weight: 600;
     text-transform: uppercase;
-    /* Todo mayúsculas automático */
+    /* Tout en majuscules automatique */
     letter-spacing: 1px;
     position: relative;
-    /* Necesario para la animación de la línea */
+    /* Nécessaire pour l'animation de la ligne */
     opacity: 0.8;
     transition: opacity 0.3s;
 }
@@ -590,7 +565,7 @@ footer {
     opacity: 1;
 }
 
-/* EFECTO DE LÍNEA AL PASAR EL MOUSE (Como en la foto "Reel/Projects") */
+/* EFFET DE LIGNE AU SURVOL DE LA SOURIS (Comme sur la photo "Reel/Projects") */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -599,16 +574,16 @@ footer {
     bottom: -5px;
     left: 0;
     background-color: #fff;
-    /* O puedes usar el dorado #cfa355 */
+    /* Ou vous pouvez utiliser le doré #cfa355 */
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
     width: 100%;
-    /* La línea crece al 100% al pasar el mouse */
+    /* La ligne grandit à 100% au survol */
 }
 
-/* RESPONSIVE PARA MÓVIL (Menú simple) */
+/* RESPONSIVE POUR MOBILE (Menu simple) */
 @media (max-width: 768px) {
     .navbar {
         padding: 20px;
@@ -624,52 +599,52 @@ footer {
 }
 
 .navbar {
-    /* 1. Posición Fija (Para que baje contigo) */
+    /* 1. Position Fixe (Pour qu'elle descende avec vous) */
     position: fixed;
     top: 3%;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    /* Ancho con márgenes a los lados */
+    /* Largeur avec marges sur les côtés */
     max-width: 1400px;
     z-index: 1000;
-    /* Siempre encima de todo */
+    /* Toujours au-dessus de tout */
 
-    /* 2. El Efecto "Liquid Glass" Mejorado */
+    /* 2. L'Effet "Liquid Glass" Amélioré */
     background: rgba(0, 0, 0, 0.15);
-    /* Fondo negro al 15% de opacidad */
+    /* Fond noir à 15% d'opacité */
     backdrop-filter: blur(20px);
-    /* Desenfoque más pronunciado */
+    /* Flou plus prononcé */
     -webkit-backdrop-filter: blur(20px);
-    /* Soporte para Safari/Mac */
+    /* Support pour Safari/Mac */
     border: 1.5px solid rgba(255, 255, 255, 0.3);
-    /* Borde blanquecino más visible */
+    /* Bordure blanchâtre plus visible */
     box-shadow:
         0 8px 32px 0 rgba(0, 0, 0, 0.2),
         inset 0 0 20px rgba(255, 255, 255, 0.1);
-    /* Sombra y efecto interior */
+    /* Ombre et effet intérieur */
 
-    /* 3. Esquinas Redondeadas */
+    /* 3. Coins Arrondis */
     border-radius: 20px;
-    /* Esquinas suavemente redondeadas */
+    /* Coins doucement arrondis */
 
-    /* 4. Diseño interno (Alinear Logo y Botones) */
+    /* 4. Design interne (Aligner Logo et Boutons) */
     display: flex;
     justify-content: space-between;
-    /* Logo a un lado, botones al otro */
+    /* Logo d'un côté, boutons de l'autre */
     align-items: center;
     padding: 15px 50px;
-    /* Espacio interno (arriba/abajo, lados) */
+    /* Espace interne (haut/bas, côtés) */
     transition: all 0.3s ease;
-    /* Suavidad si cambia algo */
+    /* Douceur si quelque chose change */
 }
 
-/* Ajuste para tu logo de la montaña/cine */
+/* Ajustement pour votre logo de montagne/cinéma */
 .navbar .logo img {
     height: 40px;
-    /* Ajusta este número para que el logo no sea gigante */
+    /* Ajustez ce nombre pour que le logo ne soit pas géant */
     width: auto;
-    /* Mantiene la proporción */
+    /* Maintient la proportion */
     display: block;
 }
 
@@ -685,7 +660,7 @@ footer {
     position: relative;
 }
 
-/* --- INDICADOR DRAG --- */
+/* --- INDICATEUR DE GLISSEMENT --- */
 .drag-indicator {
     position: absolute;
     top: 75px;
@@ -704,16 +679,16 @@ footer {
     width: 30px;
     height: 1px;
     background: #cfa355;
-    /* Dorado */
+    /* Doré */
 }
 
-/* --- SLIDER CONTAINER --- */
+/* --- CONTENEUR DU SLIDER --- */
 .slider-container {
     width: 100%;
     height: 60vh;
-    /* Altura del carrusel */
+    /* Hauteur du carrousel */
     overflow: hidden;
-    /* Oculta lo que se sale por los lados */
+    /* Masque ce qui dépasse sur les côtés */
     cursor: grab;
     /* Show grab cursor so user sees something */
     /* Hide default cursor */
@@ -728,25 +703,25 @@ footer {
     cursor: none;
 }
 
-/* LA PISTA QUE SE MUEVE */
+/* LA PISTE QUI BOUGE */
 .slider-track {
     display: flex;
     align-items: center;
     height: 100%;
-    /* El ancho se calcula en JS, pero por defecto que fluya */
+    /* La largeur est calculée en JS, mais par défaut on laisse couler */
     width: max-content;
-    /* Esta transición se maneja en JS para el drag, pero ponemos una base */
+    /* Cette transition est gérée en JS pour le glissement, mais on met une base */
     transition: transform 0.3s ease-out;
 }
 
-/* --- CADA DIAPOSITIVA --- */
+/* --- CHAQUE DIAPOSITIVE --- */
 .slide {
-    /* CLAVE: 60vw significa 60% del ancho de la ventana. 
-       Esto deja espacio a los lados para ver las otras fotos. */
+    /* CLÉ : 60vw signifie 60% de la largeur de la fenêtre. 
+       Cela laisse de l'espace sur les côtés pour voir les autres photos. */
     width: 60vw;
     height: 100%;
     padding: 0 20px;
-    /* Separación entre fotos */
+    /* Séparation entre les photos */
     position: relative;
     user-select: none;
     /* Prevent text selection while dragging */
@@ -761,7 +736,7 @@ footer {
     /* Ensure they sit side-by-side if not using flex */
 }
 
-/* --- HTML-ONLY NAVIGATION ANCHORS --- */
+/* --- ANCRES DE NAVIGATION HTML UNIQUEMENT --- */
 .nav-anchor {
     position: absolute;
     top: 50%;
@@ -794,8 +769,8 @@ footer {
     cursor: e-resize;
 }
 
-/* Efecto de escala */
-/* Efecto de escala */
+/* Effet d'échelle */
+/* Effet d'échelle */
 .slide {
     transform: scale(0.9);
     transition: transform 0.5s ease;
@@ -803,12 +778,12 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Un poco transparentes las de los lados */
+    /* Un peu transparentes celles des côtés */
 }
 
 .slide.active {
     transform: scale(1);
-    /* La central se ve grande */
+    /* La centrale apparaît grande */
     opacity: 1;
 }
 
@@ -826,10 +801,10 @@ footer {
     height: 100%;
     object-fit: cover;
     pointer-events: none;
-    /* Evita que arrastres la imagen fantasma */
+    /* Empêche de glisser l'image fantôme */
 }
 
-/* TEXTO ENCIMA DE LA FOTO (Estilo Aanstekelijk) */
+/* TEXTE AU-DESSUS DE LA PHOTO (Style Aanstekelijk) */
 .slide-content {
     position: absolute;
     bottom: 0;
@@ -842,14 +817,14 @@ footer {
 
 .slide-content h2 {
     font-size: 3rem;
-    /* Texto Gigante */
+    /* Texte Géant */
     text-transform: uppercase;
     font-weight: 900;
     line-height: 1;
     margin-bottom: 10px;
 }
 
-/* --- CONTROLES ABAJO --- */
+/* --- CONTRÔLES EN BAS --- */
 .controls {
     position: absolute;
     bottom: 50px;
@@ -872,7 +847,7 @@ button {
 
 .counter {
     font-family: serif;
-    /* Fuente elegante para los números */
+    /* Police élégante pour les nombres */
     font-size: 1.5rem;
     display: flex;
     align-items: center;
@@ -893,7 +868,7 @@ button {
     position: relative;
 }
 
-/* INDICADOR SUPERIOR */
+/* INDICATEUR SUPÉRIEUR */
 .drag-indicator {
     position: relative;
     display: block;
@@ -926,8 +901,8 @@ button {
     z-index: 1;
 }
 
-/* TEXTO ENCIMA DE LA FOTO (Estilo Aanstekelijk) */
-/* TEXTO BAJO LA FOTO */
+/* TEXTE AU-DESSUS DE LA PHOTO (Style Aanstekelijk) */
+/* TEXTE SOUS LA PHOTO */
 .slide-content {
     margin-top: 30px;
     text-align: center;
@@ -968,29 +943,29 @@ button {
     }
 }
 
-/* --- EL SLIDER MÁGICO CSS (Scroll Snap) --- */
+/* --- LE SLIDER MAGIQUE CSS (Scroll Snap) --- */
 .slider-container {
     display: flex;
     overflow-x: auto;
-    /* Permite scroll horizontal */
+    /* Permet le défilement horizontal */
 
-    /* LA MAGIA: Esto hace que se detenga justo en el centro */
+    /* LA MAGIE : Cela le fait s'arrêter juste au centre */
     scroll-snap-type: x mandatory;
 
-    /* Configuración de espacio */
+    /* Configuration de l'espace */
     height: 75vh;
     gap: 40px;
-    /* Espacio entre fotos */
+    /* Espace entre les photos */
 
-    /* CÁLCULO MATEMÁTICO PARA CENTRAR */
-    /* Si la foto mide 60vw, sobran 40vw. Necesitamos 20vw a cada lado */
+    /* CALCUL MATHÉMATIQUE POUR CENTRER */
+    /* Si la photo mesure 60vw, il reste 40vw. Nous avons besoin de 20vw de chaque côté */
     padding: 0 20vw;
 
-    /* Ocultar barra de scroll */
+    /* Masquer la barre de défilement */
     scrollbar-width: none;
     /* Firefox */
     scroll-behavior: smooth;
-    /* Para que al clicar los números viaje suave */
+    /* Pour que le clic sur les numéros soit fluide */
 }
 
 .slider-container::-webkit-scrollbar {
@@ -1005,19 +980,19 @@ button {
     background-color: #000000 !important;
 }
 
-/* --- LAS FOTOS --- */
+/* --- LES PHOTOS --- */
 .slide {
-    /* Tamaño fijo: 60% del ancho de la pantalla */
+    /* Taille fixe : 60% de la largeur de l'écran */
     flex: 0 0 60vw;
     height: 100%;
     position: relative;
 
-    /* Alineación del snap: obligamos a que el centro de la foto toque el centro de la pantalla */
+    /* Alignement du snap : on oblige le centre de la photo à toucher le centre de l'écran */
     scroll-snap-align: center;
 
     transition: transform 0.3s ease;
-    /* Efecto visual: Las fotos que no estén centradas se ven normales,
-       pero usaremos un truco de opacidad simple */
+    /* Effet visuel : Les photos qui ne sont pas centrées paraissent normales,
+       mais nous utiliserons une astuce d'opacité simple */
 }
 
 .slide-inner {
@@ -1036,12 +1011,12 @@ button {
     transition: transform 0.5s ease;
 }
 
-/* Efecto Hover: Zoom al pasar el mouse */
+/* Effet Hover : Zoom au survol de la souris */
 .slide:hover .slide-inner img {
     transform: scale(1.05);
 }
 
-/* --- TEXTO SOBRE LA FOTO --- */
+/* --- TEXTE SUR LA PHOTO --- */
 .slide-content {
     position: absolute;
     bottom: 0;
@@ -1064,7 +1039,7 @@ button {
     font-weight: 800;
 }
 
-/* --- NAVEGACIÓN INFERIOR (Los números) --- */
+/* --- NAVIGATION INFÉRIEURE (Les numéros) --- */
 .slider-nav {
     display: flex;
     justify-content: center;
@@ -1127,17 +1102,17 @@ button {
     z-index: 10;
 }
 
-/* --- ESCENARIO 3D --- */
+/* --- SCÈNE 3D --- */
 .scene {
     width: 400px;
-    /* Ancho Landscape */
+    /* Largeur Paysage */
     height: 250px;
-    /* Alto Landscape */
+    /* Hauteur Paysage */
     position: relative;
-    /* Perspectiva más alta (1500px) hace que se vea más lejos y menos "ojo de pez" */
+    /* Perspective plus élevée (1500px) pour voir plus loin et moins "fisheye" */
     perspective: 1500px;
     margin-top: 50px;
-    /* Un poco de aire */
+    /* Un peu d'air */
 }
 
 .carousel {
@@ -1145,11 +1120,11 @@ button {
     height: 100%;
     position: absolute;
     transform-style: preserve-3d;
-    /* VELOCIDAD: 60s para que vaya muy despacio */
+    /* VITESSE : 60s pour que ça aille très lentement */
     animation: rotateCircle 60s infinite linear;
 }
 
-/* DETENER AL PASAR EL MOUSE */
+/* ARRÊTER AU SURVOL DE LA SOURIS */
 .carousel:hover {
     animation-play-state: paused;
 }
@@ -1164,173 +1139,19 @@ button {
     }
 }
 
-/* --- LAS TARJETAS (POSICIÓN 3D) --- */
+/* --- LES CARTES (POSITION 3D) --- */
 .carousel__cell {
     position: absolute;
     width: 380px;
-    /* Un poco menos que el contenedor */
+    /* Un peu moins que le conteneur */
     height: 230px;
     left: 10px;
     top: 10px;
-    /* Aquí ya NO ponemos transiciones de hover, solo posición */
+    /* Ici nous ne mettons PLUS de transitions hover, seulement la position */
 }
 
-/* --- EL CONTENIDO DE LA TARJETA (LO QUE VEMOS) --- */
-/* Esta capa extra soluciona el bug. Movemos lo de adentro, no la caja 3D */
-.image-container {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    /* Animación suave */
-    background: #000;
-}
 
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
-    /* Un poco oscuras por defecto */
-    transition: opacity 0.4s ease;
-}
-
-/* --- HOVER EFECTOS --- */
-/* --- HOVER EFFECT: FOCUS MODE --- */
-
-/* 1. When hovering the CAROUSEL (the whole ring), fade out and blur ALL images */
-.carousel:hover .image-container {
-    filter: blur(5px) grayscale(50%);
-    opacity: 0.3;
-    transform: scale(0.9);
-    transition: all 0.5s ease;
-}
-
-/* 2. When hovering a SPECIFIC CELL, bring it back to life and Zoom it */
-.carousel__cell:hover .image-container {
-    filter: none !important;
-    /* Force clarity */
-    opacity: 1 !important;
-    transform: scale(1.8) !important;
-    /* Big Zoom */
-    box-shadow: 0 0 50px rgba(207, 163, 85, 0.8);
-    border-color: #fff;
-    z-index: 1000;
-    /* Attempt to layer on top */
-}
-
-/* Also ensure the image inside is fully visible */
-.carousel__cell:hover img {
-    opacity: 1;
-}
-
-/* Título dentro de la foto */
-.card-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-    text-align: center;
-    transform: translateY(100%);
-    /* Oculto por defecto (abajo) */
-    transition: transform 0.3s ease;
-}
-
-.carousel__cell:hover .card-info {
-    transform: translateY(0);
-    /* Aparece al hacer hover */
-}
-
-/* --- MATEMÁTICA DEL CÍRCULO (LANDSCAPE) --- */
-/* Para que las fotos horizontales no se choquen, el radio (translateZ)
-   debe ser mayor. He calculado aprox 650px para 8 fotos de 400px de ancho.
-*/
-
-.carousel__cell:nth-child(1) {
-    transform: rotateY(0deg) translateZ(650px);
-}
-
-.carousel__cell:nth-child(2) {
-    transform: rotateY(45deg) translateZ(650px);
-}
-
-.carousel__cell:nth-child(3) {
-    transform: rotateY(90deg) translateZ(650px);
-}
-
-.carousel__cell:nth-child(4) {
-    transform: rotateY(135deg) translateZ(650px);
-}
-
-.carousel__cell:nth-child(5) {
-    transform: rotateY(180deg) translateZ(650px);
-}
-
-.carousel__cell:nth-child(6) {
-    transform: rotateY(225deg) translateZ(650px);
-}
-
-.carousel__cell:nth-child(7) {
-    transform: rotateY(270deg) translateZ(650px);
-}
-
-.carousel__cell:nth-child(8) {
-    transform: rotateY(315deg) translateZ(650px);
-}
-
-/* Ajuste Móvil */
-@media (max-width: 768px) {
-    .scene {
-        width: 280px;
-        height: 180px;
-        perspective: 1000px;
-    }
-
-    .carousel__cell {
-        width: 260px;
-        height: 160px;
-    }
-
-    /* Reducimos el radio en móvil */
-    .carousel__cell:nth-child(1) {
-        transform: rotateY(0deg) translateZ(450px);
-    }
-
-    .carousel__cell:nth-child(2) {
-        transform: rotateY(45deg) translateZ(450px);
-    }
-
-    .carousel__cell:nth-child(3) {
-        transform: rotateY(90deg) translateZ(450px);
-    }
-
-    .carousel__cell:nth-child(4) {
-        transform: rotateY(135deg) translateZ(450px);
-    }
-
-    .carousel__cell:nth-child(5) {
-        transform: rotateY(180deg) translateZ(450px);
-    }
-
-    .carousel__cell:nth-child(6) {
-        transform: rotateY(225deg) translateZ(450px);
-    }
-
-    .carousel__cell:nth-child(7) {
-        transform: rotateY(270deg) translateZ(450px);
-    }
-
-    .carousel__cell:nth-child(8) {
-        transform: rotateY(315deg) translateZ(450px);
-    }
-}
-
-/* --- CONTACT PAGE STYLES --- */
+/* --- STYLES PAGE CONTACT --- */
 .contact-wrapper {
     background: #050505;
     padding-top: 120px;
@@ -1495,7 +1316,7 @@ button {
     background: #cfa355;
 }
 
-/* --- SERVICES PAGE --- */
+/* --- PAGE SERVICES --- */
 .services-wrapper,
 .portfolio-wrapper {
     background-color: #000000 !important;
@@ -1568,7 +1389,7 @@ button {
 }
 
 
-/* --- MODAL STYLES --- */
+/* --- STYLES MODAL --- */
 .modal {
     display: none;
     position: fixed;
@@ -1659,7 +1480,7 @@ button {
     margin-bottom: 30px;
 }
 
-/* --- CART PAGE STYLES --- */
+/* --- STYLES PAGE PANIER --- */
 .dark-theme {
     background-color: #050505 !important;
     color: #fff;
@@ -1821,13 +1642,13 @@ button {
 
 .main-footer {
     background-color: #000;
-    /* Fondo negro */
+    /* Fond noir */
     border-top: 1px solid #222;
-    /* Una línea sutil arriba para separar */
+    /* Une ligne subtile en haut pour séparer */
     padding: 30px 20px;
     text-align: center;
     margin-top: 100px;
-    /* Truco: empuja el footer al fondo si usas flexbox en body */
+    /* Astuce : pousse le footer vers le bas si vous utilisez flexbox sur body */
 }
 
 .footer-content {
@@ -1835,24 +1656,24 @@ button {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    /* Espacio entre el texto y el enlace */
+    /* Espace entre le texte et le lien */
     flex-wrap: wrap;
-    /* Para que se adapte en móviles */
+    /* Pour que ça s'adapte sur mobiles */
 }
 
 .main-footer p {
     color: #666;
-    /* Gris oscuro para el copyright */
+    /* Gris foncé pour le copyright */
     font-size: 0.9rem;
     margin: 0;
 }
 
 .separator {
     color: #333;
-    /* La barra vertical | */
+    /* La barre verticale | */
 }
 
-/* Estilo del enlace a Menciones Legales */
+/* Style du lien vers Mentions Légales */
 .legal-link {
     color: #888;
     text-decoration: none;
@@ -1862,20 +1683,20 @@ button {
 
 .legal-link:hover {
     color: #cfa355;
-    /* Se pone dorado cuando pasas el mouse */
+    /* Devient doré au survol de la souris */
     text-decoration: underline;
 }
 
-/* RESPONSIVE MÓVIL */
+/* RESPONSIVE MOBILE */
 @media (max-width: 600px) {
     .footer-content {
         flex-direction: column;
-        /* Uno debajo del otro en móvil */
+        /* L'un sous l'autre sur mobile */
         gap: 10px;
     }
 
     .separator {
         display: none;
-        /* Ocultamos la barra en móvil */
+        /* On cache la barre sur mobile */
     }
 }

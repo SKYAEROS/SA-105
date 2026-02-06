@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Benj.RLT</title>
     <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* El estilo del mensaje de éxito */
+        .success-message {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid #2ecc71;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none; /* Oculto por defecto hasta que JS lo active */
+        }
+    </style>
 </head>
 
 <body>
@@ -17,45 +30,51 @@
         </div>
 
         <nav>
-            <ul class="nav-links">
-
+            <ul class="nav-links" id="navLinks">
                 <li><a href="portfolio.html">Portfolio</a></li>
-
                 <li><a href="services.html">Services</a></li>
-
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="panier.html">Panier</a></li>
             </ul>
         </nav>
+        
+        <div class="burger-menu" id="burgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
     <div class="main-wrapper contact-wrapper">
         <div class="contact-grid">
 
-            <!-- Side: Socials & Info -->
             <div class="contact-info">
                 <h1 class="page-title">Let's Create <br> Together</h1>
                 <p class="subtitle">Un projet ? Une question ? Envoyez un message ou retrouvez-moi sur les réseaux.</p>
 
                 <div class="social-highlight">
-                    <a href="https://instagram.com" target="_blank" class="social-card instagram">
-                        <div class="icon">IG</div> <!-- Placeholder for Icon -->
+                    <a href="https://www.instagram.com/benj.rlt/" target="_blank" class="social-card instagram">
+                        <div class="icon">IG</div>
                         <span>Instagram</span>
                     </a>
-                    <a href="https://facebook.com" target="_blank" class="social-card facebook">
+                    <a href="https://www.facebook.com/share/18H993xcfG/" target="_blank" class="social-card facebook">
                         <div class="icon">FB</div>
                         <span>Facebook</span>
                     </a>
-                    <a href="https://youtube.com" target="_blank" class="social-card youtube">
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-card youtube">
                         <div class="icon">YT</div>
                         <span>Youtube</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Side: Form -->
             <div class="form-container">
-                <form action="#" method="POST">
-                    
+                <form action="traitement.php" method="POST">
+
+                    <div id="msg-success" class="success-message">
+                        Message envoyé avec succès !
+                    </div>
+
                     <div class="input-group">
                         <input type="text" name="prenom" required placeholder=" ">
                         <label>Prénom</label>
@@ -85,4 +104,40 @@
         </div>
     </div>
 
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Benj.RLT & Luis Rivas - Projet SAE 105</p>
+            <span class="separator">|</span>
+            <a href="mentions.html" class="legal-link">Mentions Légales</a>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Script del Menú Hamburguesa
+        const burger = document.getElementById('burgerMenu');
+        const nav = document.getElementById('navLinks');
+
+        if (burger && nav) {
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                burger.classList.toggle('toggle');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    burger.classList.remove('toggle');
+                });
+            });
+        }
+
+        // 2. NUEVO SCRIPT: Detectar si el mensaje se envió
+        // Busca si en la URL hay "?success=true"
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            // Si es true, mostramos el mensaje verde
+            document.getElementById('msg-success').style.display = 'block';
+        }
+    </script>
+</body>
 </html>
